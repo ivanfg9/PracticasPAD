@@ -50,4 +50,8 @@ public class BookInfo {
 
         return lista;
     }
+
+    public String getTitle(){
+        return ;
+    }
 }

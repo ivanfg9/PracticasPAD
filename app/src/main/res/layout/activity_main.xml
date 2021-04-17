@@ -23,9 +23,9 @@
             android:layout_marginBottom="20dp"
             android:text="Book Search"
             app:layout_constraintBottom_toTopOf="@+id/bookAuthor"
-            app:layout_constraintEnd_toEndOf="@+id/bookAuthor"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/bookAuthor"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
@@ -103,7 +103,26 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+
+            >
+
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/authorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/urlText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
