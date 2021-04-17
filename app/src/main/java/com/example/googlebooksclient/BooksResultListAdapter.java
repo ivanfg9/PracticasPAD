@@ -32,7 +32,7 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
             this.booksResultListAdapter = booksResultListAdapter;
         }
 
-     
+
     }
 
     public BooksResultListAdapter(Context context, ArrayList<BookInfo> bI){
