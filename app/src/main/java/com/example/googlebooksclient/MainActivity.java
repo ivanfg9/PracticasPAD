@@ -14,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView bookSearch;
     private RecyclerView recyclerView;
     private BookLoaderCallbacks bookLoaderCallbacks = new BookLoaderCallbacks(this);
-    BooksResultListAdapter booksResultListAdapter = new BooksResultListAdapter();
+    BooksResultListAdapter booksResultListAdapter;
 
     private static final int BOOK_LOADER_ID = 0;
 
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         bookTitleEdit = findViewById(R.id.bookTitle);
         recyclerView = findViewById(R.id.recyclerView);
         group = findViewById(R.id.radioGroup);
+
+        this.booksResultListAdapter = new BooksResultListAdapter(this,new ArrayList<BookInfo>());
+        recyclerView.setAdapter(booksResultListAdapter);
 
         LoaderManager loaderManager = LoaderManager.getInstance(this);
         if(loaderManager.getLoader(BOOK_LOADER_ID) != null){
