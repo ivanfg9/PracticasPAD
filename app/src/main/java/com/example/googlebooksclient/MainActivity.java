@@ -2,6 +2,7 @@ package com.example.googlebooksclient;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -39,13 +40,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         group = findViewById(R.id.radioGroup);
 
-        this.booksResultListAdapter = new BooksResultListAdapter(this,new ArrayList<BookInfo>());
-        recyclerView.setAdapter(booksResultListAdapter);
-
         LoaderManager loaderManager = LoaderManager.getInstance(this);
         if(loaderManager.getLoader(BOOK_LOADER_ID) != null){
             loaderManager.initLoader(BOOK_LOADER_ID,null, bookLoaderCallbacks);
         }
+
+        this.booksResultListAdapter = new BooksResultListAdapter(this,new ArrayList<BookInfo>());
+        recyclerView.setAdapter(booksResultListAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void searchBooks (View view){
