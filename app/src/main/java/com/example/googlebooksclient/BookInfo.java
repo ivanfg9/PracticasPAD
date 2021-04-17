@@ -52,6 +52,14 @@ public class BookInfo {
     }
 
     public String getTitle(){
-        return ;
+        return this.title;
+    }
+
+    public String getAuthors(){
+        return this.authors;
+    }
+
+    public String getInfoLink(){
+        return this.infoLink.toString();
     }
 }

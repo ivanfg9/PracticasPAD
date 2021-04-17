@@ -47,7 +47,9 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
     @Override
     public void onBindViewHolder(@NonNull BooksResultListAdapter.ViewHolder holder, int position) {
         BookInfo mCurrent = mBooksData.get(position);
-        holder.title.setText(mCurrent.toString());
+        holder.title.setText(mCurrent.getTitle().toString());
+        holder.author.setText(mCurrent.getAuthors().toString());
+        holder.url.setText(mCurrent.getInfoLink().toString());
     }
 
     @Override
