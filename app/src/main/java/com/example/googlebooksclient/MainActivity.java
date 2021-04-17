@@ -1,6 +1,8 @@
 package com.example.googlebooksclient;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,15 +31,16 @@ public class MainActivity extends AppCompatActivity {
     BooksResultListAdapter booksResultListAdapter;
 
     private static final int BOOK_LOADER_ID = 0;
-
+        @Nullable
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         bookSearch = findViewById(R.id.bookSearch);
         bookAutorEdit = findViewById(R.id.bookAuthor);
         bookTitleEdit = findViewById(R.id.bookTitle);
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         group = findViewById(R.id.radioGroup);
 
         LoaderManager loaderManager = LoaderManager.getInstance(this);
@@ -45,7 +48,9 @@ public class MainActivity extends AppCompatActivity {
             loaderManager.initLoader(BOOK_LOADER_ID,null, bookLoaderCallbacks);
         }
 
+        //recyclerView.setHasFixedSize(true);
         this.booksResultListAdapter = new BooksResultListAdapter(this,new ArrayList<BookInfo>());
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(booksResultListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -64,5 +69,8 @@ public class MainActivity extends AppCompatActivity {
     public void updateBooksResultList(List<BookInfo> bookInfos){
         booksResultListAdapter.setBooksData(bookInfos);
         booksResultListAdapter.notifyDataSetChanged();
+        this.booksResultListAdapter = new BooksResultListAdapter(this,(ArrayList<BookInfo>) bookInfos);
+        recyclerView.setAdapter(booksResultListAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

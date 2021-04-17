@@ -24,18 +24,20 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
         protected TextView url;
         private BooksResultListAdapter booksResultListAdapter;
 
-        public ViewHolder(@NonNull View itemView, BooksResultListAdapter booksResultListAdapter) {
+        public ViewHolder(View itemView, BooksResultListAdapter booksResultListAdapter) {
             super(itemView);
-            title = itemView.findViewById(R.id.titleText);
-            author = itemView.findViewById(R.id.authorText);
-            url = itemView.findViewById(R.id.urlText);
+            this.title = itemView.findViewById(R.id.titleText);
+            this.author = itemView.findViewById(R.id.authorText);
+            this.url = itemView.findViewById(R.id.urlText);
             this.booksResultListAdapter = booksResultListAdapter;
         }
+
+     
     }
 
     public BooksResultListAdapter(Context context, ArrayList<BookInfo> bI){
-        inflater = LayoutInflater.from(context);
-        mBooksData = bI;
+        this.inflater = LayoutInflater.from(context);
+        this.mBooksData = bI;
     }
 
     @Override
