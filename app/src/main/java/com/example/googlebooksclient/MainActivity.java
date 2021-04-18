@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
         //recyclerView.setHasFixedSize(true);
         this.booksResultListAdapter = new BooksResultListAdapter(this,new ArrayList<BookInfo>());
-
         recyclerView.setAdapter(booksResultListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -69,8 +68,5 @@ public class MainActivity extends AppCompatActivity {
     public void updateBooksResultList(List<BookInfo> bookInfos){
         booksResultListAdapter.setBooksData(bookInfos);
         booksResultListAdapter.notifyDataSetChanged();
-        this.booksResultListAdapter = new BooksResultListAdapter(this,(ArrayList<BookInfo>) bookInfos);
-        recyclerView.setAdapter(booksResultListAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
