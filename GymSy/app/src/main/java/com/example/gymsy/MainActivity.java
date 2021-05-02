@@ -11,7 +11,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int registrado = 0;
+    private EditText usuario;
+    private EditText contrasena;
     //Base de datos
 
     @Override
@@ -19,18 +20,41 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent;
-        /*Mediante la base de datos mirar si esta registrado
-            En el caso que lo esté pone registrado a > 0 y te manda al intent de tus ejercicios
-            En otro caso te manda al intent de las preguntas
-         */
-        if(registrado > 0){
-            intent = new Intent(this, Inicio.class);
-            startActivity(intent);
+        usuario = findViewById(R.id._usuario);
+        contrasena = findViewById(R.id._contrasena);
+    }
+
+    public void iniciar(View view){
+        String _usuario = usuario.getText().toString();
+        String _contrasena = contrasena.getText().toString();
+
+        if(_usuario.isEmpty() && _contrasena.isEmpty()){
+            Toast toast = Toast.makeText(getApplicationContext(),"El usuario y contraseña" +
+                    "son inválidos", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        else if(_usuario.isEmpty()){
+            Toast toast = Toast.makeText(getApplicationContext(),"El usuario" +
+                    "es inválido", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        else if(_contrasena.isEmpty()){
+            Toast toast = Toast.makeText(getApplicationContext(),"La contraseña" +
+                    "es inválida", Toast.LENGTH_SHORT);
+            toast.show();
         }
         else{
-            intent = new Intent(this, Cuestionario.class);
-            startActivity(intent);
+            //Acceso a base de datos
         }
+    }
+
+    public void olvidoContrasena(View view){
+        Intent intent = new Intent(this,ContrasenaOlvidada.class);
+        startActivity(intent);
+    }
+
+    public void registrar(View view){
+        Intent intent = new Intent(this,NuevoUsuario.class);
+        startActivity(intent);
     }
 }
