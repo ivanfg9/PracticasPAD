@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText contrasena;
     private Button inicioSesion;
     private Button registrarse;
-    //Base de datos
+
+    private BaseDatos bd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

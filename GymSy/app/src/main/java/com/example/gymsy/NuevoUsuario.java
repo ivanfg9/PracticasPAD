@@ -9,12 +9,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
 public class NuevoUsuario extends Activity {
     String [] etapas = {"Volumen", "Definicion"};
     String [] frecuencias = {"Ninguna/1 vez/semana", "3/4 veces/semana", "5/mas veces/semanas"};
     String [] lesion = {"Si", "No"};
+
+    private BaseDatos bd;
 
     private TextView username;
     private EditText nombreUsuario;
@@ -57,7 +60,7 @@ public class NuevoUsuario extends Activity {
                 etapas));
 
         currentFrequency = findViewById(R.id._currentFrec);
-        frecuenciaActual = findViewById(R.id._frecuenciaAct)
+        frecuenciaActual = findViewById(R.id._frecuenciaAct);
         frecuenciaActual.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
                 frecuencias));
 
@@ -75,7 +78,7 @@ public class NuevoUsuario extends Activity {
         zonaLesion = findViewById(R.id._zonaLesion);
     }
 
-    public void registrarUsuario(View view) throws NoSuchAlgorithmException {
+    public void registrarUsuario(View view) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         String _nombreUsuario = nombreUsuario.getText().toString();
         String _altura = altura.getText().toString();
         String _peso = peso.getText().toString();
@@ -96,9 +99,9 @@ public class NuevoUsuario extends Activity {
             toast.show();
         }
         else{
-            BaseDatos db = new BaseDatos(this);
+            bd = new BaseDatos(this);
 
-            if(db.existeUsuario(_nombreUsuario)){
+            if(false    /*Acceso base de datos*/){
                 Toast toast = Toast.makeText(getApplicationContext(),"Usuario ya existente", Toast.LENGTH_SHORT);
                 toast.show();
             }
