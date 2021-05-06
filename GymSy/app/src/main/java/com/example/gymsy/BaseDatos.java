@@ -34,8 +34,8 @@ public class BaseDatos extends SQLiteOpenHelper {
 
         //Crear tabla de rutinas
         db.execSQL("CREATE TABLE rutina (idRutina INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "nombreEjercicio TEXT, diaEntreno INTEGER, repeticiones INTEGER, pesoLevantado INTEGER," +
-                " idEjercicio INTEGER)");
+                "nombreEjercicio TEXT, diaEntreno INTEGER, series INTEGER," +
+                " repeticiones INTEGER, pesoLevantado INTEGER," + " idEjercicio INTEGER)");
 
         //Crear tabla de asociacionRutinaEjercicio
         db.execSQL("CREATE TABLE asociacionRutinaEjercicio (idAsociacionRutina INTEGER" +

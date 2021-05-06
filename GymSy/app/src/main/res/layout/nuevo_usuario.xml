@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="com.example.gymsy.NuevoUsuario" >
+
+    <LinearLayout
+        android:id="@+id/_height"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Nombre"
+            android:textColor="#FF9800" />
+
+        <EditText
+            android:id="@+id/_nombreUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:ems="10"
+            android:hint="Introduce nombre usuario"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Contraseña"
+            android:textColor="#FF9800" />
+
+        <EditText
+            android:id="@+id/_contrasenia"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:ems="10"
+            android:hint="Introduce contraseña"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+        <TextView
+            android:id="@+id/_heigh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Altura"
+            android:textColor="#FF9800" />
+
+        <EditText
+            android:id="@+id/_altura"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:ems="10"
+            android:hint="Introduce altura"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+        <TextView
+            android:id="@+id/_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Peso"
+            android:textColor="#FF9800" />
+
+        <EditText
+            android:id="@+id/_peso"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:ems="10"
+            android:hint="Introduce peso"
+            android:inputType="textPassword"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/_stage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Etapa"
+                android:textColor="#FF9800" />
+
+            <Spinner
+                android:id="@+id/_etapa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/_currentFrec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Frecuencia ejercicio actual"
+                android:textColor="#FF9800" />
+
+            <Spinner
+                android:id="@+id/_frecuenciaAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/_targetFrec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Frecuencia ejercicio objetivo"
+                android:textColor="#FF9800" />
+
+            <Spinner
+                android:id="@+id/_frecObj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/_injury"
+                android:layout_width="143dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Lesion"
+                android:textColor="#FF9800" />
+
+            <Spinner
+                android:id="@+id/_lesionSiNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/_injuredArea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Zona de la lesion"
+                android:textColor="#FF9800" />
+
+            <EditText
+                android:id="@+id/_zonaLesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Introduce zona lesionada" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="14dp"
+            android:onClick="registrarUsuario"
+            android:text="Registrarse" />
+    </LinearLayout>
+    </ScrollView>

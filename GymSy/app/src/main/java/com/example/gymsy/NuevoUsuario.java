@@ -38,15 +38,15 @@ public class NuevoUsuario extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.nuevoUsuario);
+        setContentView(R.layout.nuevo_usuario);
 
         username = findViewById(R.id._username);
         nombreUsuario = findViewById(R.id._nombreUsuario);
 
         password = findViewById(R.id._password);
-        contrasena = findViewById(R.id._contrasena);
+        contrasena = findViewById(R.id._contrasenia);
 
-        height = findViewById(R.id._height);
+        height = findViewById(R.id._heigh);
         altura = findViewById(R.id._altura);
 
         weight = findViewById(R.id._weight);
@@ -57,14 +57,17 @@ public class NuevoUsuario extends Activity {
                 etapas));
 
         currentFrequency = findViewById(R.id._currentFrec);
+        frecuenciaActual = findViewById(R.id._frecuenciaAct)
         frecuenciaActual.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
                 frecuencias));
 
         targetFrequency = findViewById(R.id._targetFrec);
+        frecuenciaObjetivo = findViewById(R.id._frecObj);
         frecuenciaObjetivo.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
                 frecuencias));
 
         injury = findViewById(R.id._injury);
+        lesionSiNo = findViewById(R.id._lesionSiNo);
         lesionSiNo.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
                 lesion));
 

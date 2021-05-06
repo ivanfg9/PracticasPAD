@@ -7,12 +7,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ImageView foto;
+    private TextView usuarioView;
     private EditText usuario;
+    private TextView contrasenaView;
     private EditText contrasena;
+    private Button inicioSesion;
+    private Button registrarse;
     //Base de datos
 
     @Override
@@ -20,8 +27,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        usuario = findViewById(R.id._usuario);
-        contrasena = findViewById(R.id._contrasena);
+        foto = findViewById(R.id._foto);
+        usuarioView = findViewById(R.id._heigh);
+        usuario = findViewById(R.id._altura);
+        contrasenaView = findViewById(R.id._weight);
+        contrasena = findViewById(R.id._peso);
+        inicioSesion = findViewById(R.id._inicioSesion);
+        registrarse = findViewById(R.id._registrarse);
+
     }
 
     public void iniciar(View view){
@@ -46,11 +59,6 @@ public class MainActivity extends AppCompatActivity {
         else{
             //Acceso a base de datos
         }
-    }
-
-    public void olvidoContrasena(View view){
-        Intent intent = new Intent(this,ContrasenaOlvidada.class);
-        startActivity(intent);
     }
 
     public void registrar(View view){
