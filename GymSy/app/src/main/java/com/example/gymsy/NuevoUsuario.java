@@ -3,6 +3,7 @@ package com.example.gymsy;
 import android.app.Activity;
 import android.content.SyncStatusObserver;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,6 +18,7 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 
@@ -45,6 +47,17 @@ public class NuevoUsuario extends Activity {
     private Spinner lesionSiNo;
     private TextView injuredArea;
     private EditText zonaLesion;
+
+
+    private String _nombreUsuario;
+    private String _altura;
+    private String _peso;
+    private String _etapa;
+    private String _frecActual;
+    private String _frecObjetivo;
+    private String _lesionSiNo;
+    private String _zonaLesion;
+    private String _contrasenia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,14 +101,16 @@ public class NuevoUsuario extends Activity {
     }
 
     public void registrarUsuario(View view) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        String _nombreUsuario = nombreUsuario.getText().toString();
-        String _altura = altura.getText().toString();
-        String _peso = peso.getText().toString();
-        String _etapa = etapa.getSelectedItem().toString();
-        String _frecActual = frecuenciaActual.getSelectedItem().toString();
-        String _frecObjetivo = frecuenciaObjetivo.getSelectedItem().toString();
-        String _lesionSiNo = lesionSiNo.getSelectedItem().toString();
-        String _zonaLesion = "";
+         _contrasenia = contrasena.getText().toString();
+         _nombreUsuario = nombreUsuario.getText().toString();
+         _altura = altura.getText().toString();
+         _peso = peso.getText().toString();
+         _etapa = etapa.getSelectedItem().toString();
+         _frecActual = frecuenciaActual.getSelectedItem().toString();
+         _frecObjetivo = frecuenciaObjetivo.getSelectedItem().toString();
+         _lesionSiNo = lesionSiNo.getSelectedItem().toString();
+         _zonaLesion = "";
+
         if (_lesionSiNo.equalsIgnoreCase("Si")){
             _zonaLesion = zonaLesion.getText().toString();
         }
@@ -138,28 +153,31 @@ public class NuevoUsuario extends Activity {
     public void postData() {
 
         try {
-            String urlParameters  = "username=bindrei1&password=12345&altura=185&peso=80&etapa=empanadilla&lesion=dierna&zonaLesion=espalda";
-            byte[] postData       = urlParameters.getBytes( "UTF_8" );
-            int    postDataLength = postData.length;
-            String request = "http://127.0.0.1/auth/register/";
-            URL    url            = new URL( request );
-            HttpURLConnection conn= (HttpURLConnection) url.openConnection();
-            conn.setDoOutput( true );
-            conn.setInstanceFollowRedirects( false );
-            conn.setRequestMethod( "POST" );
-            conn.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
-            conn.setRequestProperty( "charset", "utf-8");
-            conn.setRequestProperty( "Content-Length", Integer.toString( postDataLength ));
-            conn.setUseCaches( false );
-            try( DataOutputStream wr = new DataOutputStream( conn.getOutputStream())) {
-                wr.write( postData );
-            }
-            catch (Exception e){
-                Log.d("ALV",e.getMessage());
-            }
+
+            Thread thread = new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+                    try  {
+                        String data = "username="+_nombreUsuario+"&password="+_contrasenia+"&altura="+_altura+"&peso="+_peso+"&etapa="+_etapa+"&lesion="+_lesionSiNo+"&zonaLesion="+_zonaLesion;
+                        URL url = new URL("http://192.168.0.196:5000/auth/register/");
+                        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                        con.setRequestMethod("POST");
+                        con.setDoOutput(true);
+                        con.getOutputStream().write(data.getBytes("UTF-8"));
+                        con.getInputStream();
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            thread.start();
         }
         catch(Exception e){
-            Log.d("ALV",e.getMessage());
+            e.printStackTrace();
         }
     }
 
