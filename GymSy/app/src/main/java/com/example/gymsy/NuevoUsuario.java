@@ -1,7 +1,9 @@
 package com.example.gymsy;
 
 import android.app.Activity;
+import android.content.SyncStatusObserver;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -9,7 +11,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import java.io.DataOutputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 
 public class NuevoUsuario extends Activity {
@@ -55,7 +63,8 @@ public class NuevoUsuario extends Activity {
         weight = findViewById(R.id._weight);
         peso = findViewById(R.id._peso);
 
-        stage = findViewById(R.id._stage);
+        stage = findViewById(R.id._stageText);
+        etapa = findViewById(R.id._etapa);
         etapa.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
                 etapas));
 
@@ -99,8 +108,8 @@ public class NuevoUsuario extends Activity {
             toast.show();
         }
         else{
-            bd = new BaseDatos(this);
-
+            //bd = new BaseDatos(this);
+            postData();
             if(false    /*Acceso base de datos*/){
                 Toast toast = Toast.makeText(getApplicationContext(),"Usuario ya existente", Toast.LENGTH_SHORT);
                 toast.show();
@@ -117,12 +126,41 @@ public class NuevoUsuario extends Activity {
                 }
             }
 
-            byte[] salt = ContrasenaEncriptada.getSalt();
-            String contrasenaHasheada = ContrasenaEncriptada.hash(contrasena.getText().toString(), salt);
+
 
             //Añadir usuario a base de datos
 
             finish();
         }
     }
+
+
+    public void postData() {
+
+        try {
+            String urlParameters  = "username=bindrei1&password=12345&altura=185&peso=80&etapa=empanadilla&lesion=dierna&zonaLesion=espalda";
+            byte[] postData       = urlParameters.getBytes( "UTF_8" );
+            int    postDataLength = postData.length;
+            String request = "http://127.0.0.1/auth/register/";
+            URL    url            = new URL( request );
+            HttpURLConnection conn= (HttpURLConnection) url.openConnection();
+            conn.setDoOutput( true );
+            conn.setInstanceFollowRedirects( false );
+            conn.setRequestMethod( "POST" );
+            conn.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
+            conn.setRequestProperty( "charset", "utf-8");
+            conn.setRequestProperty( "Content-Length", Integer.toString( postDataLength ));
+            conn.setUseCaches( false );
+            try( DataOutputStream wr = new DataOutputStream( conn.getOutputStream())) {
+                wr.write( postData );
+            }
+            catch (Exception e){
+                Log.d("ALV",e.getMessage());
+            }
+        }
+        catch(Exception e){
+            Log.d("ALV",e.getMessage());
+        }
+    }
+
 }
