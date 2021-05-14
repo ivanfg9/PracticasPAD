@@ -1,5 +1,4 @@
 package com.example.gymsy;
-
 import android.app.Activity;
 import android.content.SyncStatusObserver;
 import android.os.Bundle;
@@ -13,7 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.gymsy.connection.PostData;
+
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -124,9 +129,14 @@ public class NuevoUsuario extends Activity {
         }
         else{
             //bd = new BaseDatos(this);
-            postData();
-            if(false    /*Acceso base de datos*/){
+            String jsonRet = postData();
+
+            if(jsonRet.contains("Username Exists")){
                 Toast toast = Toast.makeText(getApplicationContext(),"Usuario ya existente", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else if(jsonRet.contains("Registered")){
+                Toast toast = Toast.makeText(getApplicationContext(),"Registrado!", Toast.LENGTH_SHORT);
                 toast.show();
             }
             else{
@@ -140,44 +150,29 @@ public class NuevoUsuario extends Activity {
                     nivel = 3;
                 }
             }
-
-
-
-            //Añadir usuario a base de datos
-
             finish();
         }
     }
 
 
-    public void postData() {
+    public String postData() {
 
         try {
 
-            Thread thread = new Thread(new Runnable() {
-
-                @Override
-                public void run() {
-                    try  {
-                        String data = "username="+_nombreUsuario+"&password="+_contrasenia+"&altura="+_altura+"&peso="+_peso+"&etapa="+_etapa+"&lesion="+_lesionSiNo+"&zonaLesion="+_zonaLesion;
-                        URL url = new URL("http://192.168.0.196:5000/auth/register/");
-                        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                        con.setRequestMethod("POST");
-                        con.setDoOutput(true);
-                        con.getOutputStream().write(data.getBytes("UTF-8"));
-                        con.getInputStream();
-
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-
+            String data = "username="+_nombreUsuario+"&password="+_contrasenia+"&altura="+_altura+"&peso="+_peso+"&etapa="+_etapa+"&lesion="+_lesionSiNo+"&zonaLesion="+_zonaLesion;
+            String url = "http://192.168.0.196:5000/auth/register/";
+            PostData foo = new PostData(data, url);
+            Thread thread = new Thread(foo);
             thread.start();
+            thread.join();
+            String jsonResult = foo.getValue();
+            Log.e("test", jsonResult );
+            return jsonResult;
         }
         catch(Exception e){
             e.printStackTrace();
+            String fail = "{\"msg\":\"Username Exists\"}";
+            return fail;
         }
     }
 
