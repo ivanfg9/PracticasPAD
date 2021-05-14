@@ -79,7 +79,12 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS ejercicios");
+        db.execSQL("DROP TABLE IF EXISTS rutina");
+        db.execSQL("DROP TABLE IF EXISTS usuarios");
+        db.execSQL("DROP TABLE IF EXISTS asociacionRutinaEjercicio");
 
+        onCreate(db);
     }
 
     public Cursor getEjercicios(){
@@ -93,6 +98,20 @@ public class BaseDatos extends SQLiteOpenHelper {
                         null);
     }
 
+    public Cursor getEjercicioPorId(String idEjercicio){
+        String buscado[] = {idEjercicio};
+
+        Cursor c = getReadableDatabase().query(
+                TablasBD.EjercicioEntry.NOMBRE_TABLA,
+                null,
+                TablasBD.EjercicioEntry._ID + " LIKE ?",
+                buscado,
+                null,
+                null,
+                null);
+        return c;
+    }
+
     public Cursor getRutinas(){
         return getReadableDatabase().query(
                 TablasBD.RutinaEntry.NOMBRE_TABLA,
@@ -102,6 +121,20 @@ public class BaseDatos extends SQLiteOpenHelper {
                 null,
                 null,
                 null);
+    }
+
+    public Cursor getRutinaPorId(String idRutina){
+        String buscado[] = {idRutina};
+
+        Cursor c = getReadableDatabase().query(
+                TablasBD.RutinaEntry.NOMBRE_TABLA,
+                null,
+                TablasBD.RutinaEntry._ID + " LIKE ?",
+                buscado,
+                null,
+                null,
+                null);
+        return c;
     }
 
     public Cursor getUsuarios(){
@@ -115,6 +148,20 @@ public class BaseDatos extends SQLiteOpenHelper {
                 null);
     }
 
+    public Cursor getUsuarioPorId(String idUsuario){
+        String buscado[] = {idUsuario};
+
+        Cursor c = getReadableDatabase().query(
+                TablasBD.UsuarioEntry.NOMBRE_TABLA,
+                null,
+                TablasBD.UsuarioEntry._ID + " LIKE ?",
+                buscado,
+                null,
+                null,
+                null);
+        return c;
+    }
+
     public Cursor getAsociacionRutinaEjercicio(){
         return getReadableDatabase().query(
                 TablasBD.AsociacionRutinaEntry.NOMBRE_TABLA,
@@ -124,5 +171,19 @@ public class BaseDatos extends SQLiteOpenHelper {
                 null,
                 null,
                 null);
+    }
+
+    public Cursor getAsociacionRutinaEjercicioPorId(String idAscociacion){
+        String buscado[] = {idAscociacion};
+
+        Cursor c = getReadableDatabase().query(
+                TablasBD.AsociacionRutinaEntry.NOMBRE_TABLA,
+                null,
+                TablasBD.AsociacionRutinaEntry._ID + " LIKE ?",
+                buscado,
+                null,
+                null,
+                null);
+        return c;
     }
 }

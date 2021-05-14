@@ -1,18 +1,26 @@
 package com.example.gymsy;
 
-import android.app.ListActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-public class Inicio extends ListActivity {
+public class Inicio extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inicio);
+
+        EjerciciosFragment fragment = (EjerciciosFragment)
+                getSupportFragmentManager().findFragmentById( R.id.ejercicio_container);
+
+        if(fragment==null){
+            fragment = new EjerciciosFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.ejercicio_container, fragment)
+                    .commit();
+        }
     }
 }
