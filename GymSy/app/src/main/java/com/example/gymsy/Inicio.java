@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class Inicio extends AppCompatActivity {
 
     public static final String EXTRA_EJERCICIO_ID = "extra_ejercicio_id";
+    public static final String EXTRA_USUARIO_ID = "extra_usuario_id";
 
     private Button acercaDe;
     private Button rendimiento;

@@ -165,13 +165,13 @@ public class BaseDatos extends SQLiteOpenHelper {
                 null);
     }
 
-    public Cursor getUsuarioPorId(String idUsuario){
-        String buscado[] = {idUsuario};
+    public Cursor getUsuarioPorUsername(String username){
+        String buscado[] = {username};
 
         Cursor c = getReadableDatabase().query(
                 TablasBD.UsuarioEntry.NOMBRE_TABLA,
                 null,
-                TablasBD.UsuarioEntry._ID + " LIKE ?",
+                TablasBD.UsuarioEntry.NOMBRE_USUARIO + " LIKE ?",
                 buscado,
                 null,
                 null,

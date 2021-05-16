@@ -3,6 +3,7 @@ package com.example.gymsy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         inicioSesion = findViewById(R.id._inicioSesion);
         registrarse = findViewById(R.id._registrarse);
 
+        bd = new BaseDatos(getApplicationContext());
+
     }
 
     public void iniciar(View view){
@@ -59,6 +62,22 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             //Acceso a base de datos
+            Cursor c = bd.getUsuarioPorUsername(_usuario);
+            if(c == null){
+                Toast toast = Toast.makeText(getApplicationContext(),"El usuario" +
+                        "no existe", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else if(c.getString(c.getColumnIndex(TablasBD.UsuarioEntry.CONTRASENA)).equals(contrasena)){
+                Intent intent = new Intent(this,Inicio.class);
+                intent.putExtra(Inicio.EXTRA_USUARIO_ID,_usuario);
+                startActivity(intent);
+            }
+            else{
+                Toast toast = Toast.makeText(getApplicationContext(),"La contraseña" +
+                        "no coincide", Toast.LENGTH_SHORT);
+                toast.show();
+            }
         }
     }
 
