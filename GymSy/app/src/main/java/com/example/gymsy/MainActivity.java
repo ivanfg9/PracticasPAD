@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.gymsy.connection.PostData;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,22 +64,33 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
         }
         else{
-            //Acceso a base de datos
-            Cursor c = bd.getUsuarioPorUsername(_usuario);
-            if(c == null){
-                Toast toast = Toast.makeText(getApplicationContext(),"El usuario" +
-                        "no existe", Toast.LENGTH_SHORT);
-                toast.show();
+
+            String jsonAnswer;
+            try{
+
+                String data = "username="+_usuario+"&password="+_contrasena;
+                String url = "http://192.168.0.196:5000/auth/login/";
+                PostData loginConnection = new PostData(data,url);
+                Thread thread = new Thread(loginConnection);
+                thread.start();
+                thread.join();
+                jsonAnswer = loginConnection.getValue();
+                Log.e("test",jsonAnswer);
+                if(jsonAnswer.contains("Wrong")){
+                    Toast toast = Toast.makeText(getApplicationContext(),"El usuario no existe o la contraseña es incorrecta", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                }
+                else if (jsonAnswer.contains("Logged")){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Inicio de Sesión correcto", Toast.LENGTH_SHORT);
+                    toast.show();
+                    Intent intent = new Intent(this,Inicio.class);
+                    intent.putExtra(Inicio.EXTRA_USUARIO_ID,_usuario);
+                    startActivity(intent);
+                }
             }
-            else if(c.getString(c.getColumnIndex(TablasBD.UsuarioEntry.CONTRASENA)).equals(contrasena)){
-                Intent intent = new Intent(this,Inicio.class);
-                intent.putExtra(Inicio.EXTRA_USUARIO_ID,_usuario);
-                startActivity(intent);
-            }
-            else{
-                Toast toast = Toast.makeText(getApplicationContext(),"La contraseña" +
-                        "no coincide", Toast.LENGTH_SHORT);
-                toast.show();
+            catch (Exception e){
+                e.printStackTrace();
             }
         }
     }

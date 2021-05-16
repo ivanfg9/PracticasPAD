@@ -24,13 +24,13 @@ public class EjerciciosFragment extends Fragment {
     private SimpleCursorAdapter ejerciciosCursorAdapter;
 
     public EjerciciosFragment() {
-
+        db = new  BaseDatos(getActivity());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        db = new  BaseDatos(getActivity());
         View root = inflater.inflate(R.layout.fragment_ejercicios, container, false);
 
         ejerciciosListView = (ListView) root.findViewById(R.id.ejercicios_list);

@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".NuevoUsuario"/>
+        <activity android:name=".Inicio"/>
 
     </application>
 

@@ -64,7 +64,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         db.insert(TablasBD.UsuarioEntry.NOMBRE_TABLA,null,us.toContentValues());
 
         //Valores Rutina
-        Rutina ru = new Rutina("09-08-2021",Integer.valueOf(TablasBD.UsuarioEntry._ID.toString()),
+        Rutina ru = new Rutina("09-08-2021",Integer.valueOf(TablasBD.UsuarioEntry._ID),
                 10, 15);
 
         db.insert(TablasBD.RutinaEntry.NOMBRE_TABLA,null,ru.toContentValues());
