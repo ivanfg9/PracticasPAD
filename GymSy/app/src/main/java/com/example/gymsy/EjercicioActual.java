@@ -1,5 +1,7 @@
 package com.example.gymsy;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -54,6 +56,14 @@ public class EjercicioActual extends AppCompatActivity {
         //Acceso a base de datos
         bd = new BaseDatos(getApplicationContext());
 
+        Bundle datosIntent = getIntent().getExtras();
+        id_ejercicio = Integer.valueOf(datosIntent.toString());
+
+        Cursor c = bd.getRutinaPorIdEjercicio(datosIntent.toString());
+        repeticiones.setText(c.getColumnIndex(TablasBD.RutinaEntry.REPETICIONES));
+
+        c = bd.getEjercicioPorId(datosIntent.toString());
+        descripcion.setText(c.getColumnIndex(TablasBD.EjercicioEntry.MUSCULO));
         //imagen.setImageDrawable(R.drawable.);
 
         if(savedInstanceState != null){

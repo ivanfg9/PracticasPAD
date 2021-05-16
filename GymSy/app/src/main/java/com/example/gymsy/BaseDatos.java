@@ -137,6 +137,20 @@ public class BaseDatos extends SQLiteOpenHelper {
         return c;
     }
 
+    public Cursor getRutinaPorIdEjercicio(String idEjercicio){
+        String buscado[] = {idEjercicio};
+
+        Cursor c = getReadableDatabase().query(
+                TablasBD.RutinaEntry.NOMBRE_TABLA,
+                null,
+                TablasBD.RutinaEntry.ID_EJERCICIO + " LIKE ?",
+                buscado,
+                null,
+                null,
+                null);
+        return c;
+    }
+
     public Cursor getUsuarios(){
         return getReadableDatabase().query(
                 TablasBD.UsuarioEntry.NOMBRE_TABLA,
