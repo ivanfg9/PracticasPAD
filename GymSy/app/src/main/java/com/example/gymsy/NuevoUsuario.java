@@ -1,5 +1,6 @@
 package com.example.gymsy;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SyncStatusObserver;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -136,6 +137,9 @@ public class NuevoUsuario extends Activity {
                 toast.show();
             }
             else if(jsonRet.contains("Registered")){
+                Usuario u = new Usuario(_nombreUsuario,_contrasenia, Integer.valueOf(_altura),
+                        Integer.valueOf(_peso), _etapa, _frecActual, _frecObjetivo, _lesionSiNo, _zonaLesion);
+                bd.insert(bd.getWritableDatabase(), TablasBD.UsuarioEntry.NOMBRE_TABLA,null, u.toContentValues());
                 Toast toast = Toast.makeText(getApplicationContext(),"Registrado!", Toast.LENGTH_SHORT);
                 toast.show();
             }
@@ -150,7 +154,8 @@ public class NuevoUsuario extends Activity {
                     nivel = 3;
                 }
             }
-            finish();
+            Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(mainActivity);
         }
     }
 

@@ -13,7 +13,6 @@ public class BaseDatos extends SQLiteOpenHelper {
     public static final int DB_VERSION = 1;
     public static final String DB_NAME = "BaseDatos.db";
 
-
     public BaseDatos(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -75,6 +74,10 @@ public class BaseDatos extends SQLiteOpenHelper {
                 Integer.valueOf(TablasBD.UsuarioEntry._ID.toString()));
 
         db.insert(TablasBD.AsociacionRutinaEntry.NOMBRE_TABLA,null,aer.toContentValues());
+    }
+
+    public void insert(SQLiteDatabase db, String nombreTabla, Object nulo, ContentValues valores){
+        db.insert(nombreTabla,null,valores);
     }
 
     @Override
