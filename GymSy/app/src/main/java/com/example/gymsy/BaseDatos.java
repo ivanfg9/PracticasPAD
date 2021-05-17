@@ -93,8 +93,8 @@ public class BaseDatos extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public Cursor getEjercicios(){
-        return getReadableDatabase().query(
+    /*public Cursor getEjercicios(){
+        return this.getReadableDatabase().query(
                         TablasBD.EjercicioEntry.NOMBRE_TABLA,
                         null,
                         null,
@@ -107,7 +107,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     public Cursor getEjercicioPorId(String idEjercicio){
         String buscado[] = {idEjercicio};
 
-        Cursor c = getReadableDatabase().query(
+        Cursor c = this.getReadableDatabase().query(
                 TablasBD.EjercicioEntry.NOMBRE_TABLA,
                 null,
                 TablasBD.EjercicioEntry._ID + " LIKE ?",
@@ -116,10 +116,10 @@ public class BaseDatos extends SQLiteOpenHelper {
                 null,
                 null);
         return c;
-    }
+    }*/
 
     public Cursor getRutinas(){
-        return getReadableDatabase().query(
+        return this.getReadableDatabase().query(
                 TablasBD.RutinaEntry.NOMBRE_TABLA,
                 null,
                 null,
@@ -132,7 +132,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     public Cursor getRutinaPorId(String idRutina){
         String buscado[] = {idRutina};
 
-        Cursor c = getReadableDatabase().query(
+        Cursor c = this.getReadableDatabase().query(
                 TablasBD.RutinaEntry.NOMBRE_TABLA,
                 null,
                 TablasBD.RutinaEntry._ID + " LIKE ?",
