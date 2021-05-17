@@ -38,7 +38,7 @@ public class EjercicioCursorAdapter extends CursorAdapter {
 
         Glide
                 .with(context)
-                .load(Uri.parse("file:///" + avatarUri))
+                .load(Uri.parse("file:/app/src/main/res/drawable/" + avatarUri))
                 .asBitmap()
                 .centerCrop()
                 .into(new BitmapImageViewTarget(avatarImage) {

@@ -69,7 +69,7 @@ public class EjercicioActual extends AppCompatActivity {
         c = bd.getEjercicioPorId(datosIntent.toString());
         descripcion.setText(c.getColumnIndex(TablasBD.EjercicioEntry.MUSCULO));
         Glide.with(this)
-                .load(Uri.parse("file:///" +
+                .load(Uri.parse("file:/app/src/main/res/drawable/" +
                         c.getString(c.getColumnIndex(TablasBD.EjercicioEntry.IMAGEN_URI))))
                 .centerCrop()
                 .into(imagen);
