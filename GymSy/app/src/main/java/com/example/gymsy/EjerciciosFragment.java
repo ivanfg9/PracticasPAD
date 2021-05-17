@@ -3,10 +3,12 @@ package com.example.gymsy;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,13 +26,16 @@ public class EjerciciosFragment extends Fragment {
     private SimpleCursorAdapter ejerciciosCursorAdapter;
 
     public EjerciciosFragment() {
-        db = new  BaseDatos(getActivity());
+        //db = new  BaseDatos(getContext());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        db = new  BaseDatos(getActivity());
+        db = new  BaseDatos(getContext());
+        SQLiteDatabase db2 = db.getWritableDatabase();
+        Cursor a = db.getEjercicios();
+
         View root = inflater.inflate(R.layout.fragment_ejercicios, container, false);
 
         ejerciciosListView = (ListView) root.findViewById(R.id.ejercicios_list);

@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".NuevoUsuario"/>
         <activity android:name=".Inicio"/>
+        <activity android:name=".AcercaDe"/>
 
     </application>
 

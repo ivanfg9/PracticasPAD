@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -12,14 +13,17 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     public static final int DB_VERSION = 1;
     public static final String DB_NAME = "BaseDatos.db";
+    private SQLiteDatabase bbdd;
 
     public BaseDatos(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
+        bbdd =  this.getWritableDatabase();
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TablasBD.EjercicioEntry.NOMBRE_TABLA + " ("
+        //this.bbdd =  this.getWritableDatabase();
+        this.bbdd.execSQL("CREATE TABLE " + TablasBD.EjercicioEntry.NOMBRE_TABLA + " ("
         + TablasBD.EjercicioEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
         + TablasBD.EjercicioEntry.NOMBRE  + " TEXT NOT NULL,"
         + TablasBD.EjercicioEntry.MUSCULO + " TEXT NOT NULL,"
@@ -54,7 +58,8 @@ public class BaseDatos extends SQLiteOpenHelper {
 
         //Valores Ejercicios
         Ejercicio ej = new Ejercicio("Hammer Curl", "Biceps", "hammerCurl.jpg");
-
+        Log.e("test",ej.toContentValues().toString());
+        Log.e("test","hola");
         db.insert(TablasBD.EjercicioEntry.NOMBRE_TABLA,null,ej.toContentValues());
 
         //Valores Usuarios
@@ -63,15 +68,13 @@ public class BaseDatos extends SQLiteOpenHelper {
 
         db.insert(TablasBD.UsuarioEntry.NOMBRE_TABLA,null,us.toContentValues());
 
-        //Valores Rutina
-        Rutina ru = new Rutina("09-08-2021",Integer.valueOf(TablasBD.UsuarioEntry._ID),
+        Rutina ru = new Rutina("09-08-2021",Integer.valueOf("1"/*TablasBD.UsuarioEntry._ID*/),
                 10, 15);
 
         db.insert(TablasBD.RutinaEntry.NOMBRE_TABLA,null,ru.toContentValues());
 
-        //Valores AsociacionEjerciciosRutina
-        AsociacionEjercicioRutina aer = new AsociacionEjercicioRutina(Integer.valueOf(TablasBD.RutinaEntry._ID),
-                Integer.valueOf(TablasBD.UsuarioEntry._ID.toString()));
+        AsociacionEjercicioRutina aer = new AsociacionEjercicioRutina(Integer.valueOf("1"/*TablasBD.RutinaEntry._ID*/),
+                Integer.valueOf("1"/*TablasBD.UsuarioEntry._ID.toString()*/));
 
         db.insert(TablasBD.AsociacionRutinaEntry.NOMBRE_TABLA,null,aer.toContentValues());
     }
