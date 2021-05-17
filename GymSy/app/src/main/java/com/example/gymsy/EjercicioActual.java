@@ -1,6 +1,5 @@
 package com.example.gymsy;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -36,6 +35,10 @@ public class EjercicioActual extends AppCompatActivity {
     private boolean estadoPlay;
     private boolean estadoComenzar;
 
+    public EjercicioActual(BaseDatos bbdd){
+        bd = bbdd;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,9 +55,6 @@ public class EjercicioActual extends AppCompatActivity {
         repeticiones = findViewById(R.id._repeticiones);
         _musculo = findViewById(R.id._musculo);
         descripcion = findViewById(R.id._descripcionMusculo);
-
-        //Acceso a base de datos
-        bd = new BaseDatos(getApplicationContext());
 
         Bundle datosIntent = getIntent().getExtras();
         id_ejercicio = Integer.valueOf(datosIntent.toString());

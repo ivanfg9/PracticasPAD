@@ -65,6 +65,10 @@ public class NuevoUsuario extends Activity {
     private String _zonaLesion;
     private String _contrasenia;
 
+    public NuevoUsuario(BaseDatos bbdd){
+        bd = bbdd;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,7 +133,7 @@ public class NuevoUsuario extends Activity {
             toast.show();
         }
         else{
-            //bd = new BaseDatos(this);
+
             String jsonRet = postData();
 
             if(jsonRet.contains("Username Exists")){

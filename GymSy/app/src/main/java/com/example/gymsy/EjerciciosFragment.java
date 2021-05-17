@@ -20,21 +20,21 @@ public class EjerciciosFragment extends Fragment {
 
     private static final int REQUEST_SHOW_EJERCICIOS = 2;
 
-    private BaseDatos db;
+    private BaseDatos bd;
 
     private ListView ejerciciosListView;
     private SimpleCursorAdapter ejerciciosCursorAdapter;
 
-    public EjerciciosFragment() {
-        //db = new  BaseDatos(getContext());
+    public EjerciciosFragment(BaseDatos bbdd) {
+        bd = bbdd;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        db = new  BaseDatos(getContext());
-        SQLiteDatabase db2 = db.getWritableDatabase();
-        Cursor a = db.getEjercicios();
+
+        SQLiteDatabase db2 = bd.getWritableDatabase();
+        Cursor a = bd.getEjercicios();
 
         View root = inflater.inflate(R.layout.fragment_ejercicios, container, false);
 
@@ -42,7 +42,7 @@ public class EjerciciosFragment extends Fragment {
         ejerciciosCursorAdapter = new SimpleCursorAdapter(
                 getActivity(),
                 android.R.layout.two_line_list_item,
-                db.getEjercicios(),
+                bd.getEjercicios(),
                 new String[]{TablasBD.EjercicioEntry.IMAGEN_URI},
                 new int[]{R.id.iv_avatar},
                 SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
@@ -61,15 +61,14 @@ public class EjerciciosFragment extends Fragment {
             }
         });
 
-        db = new BaseDatos(getActivity());
-
-        loadEjercicios(db);
+        loadEjercicios(bd);
 
         return root;
     }
 
     private void showEjercicioScreen(String ejercicioId) {
-        Intent intent = new Intent(getActivity(), EjercicioActual.class);
+        EjercicioActual ejercicioActual = new EjercicioActual(bd);
+        Intent intent = new Intent(getActivity(), ejercicioActual.getClass());
         intent.putExtra(Inicio.EXTRA_EJERCICIO_ID, ejercicioId);
         startActivityForResult(intent, REQUEST_SHOW_EJERCICIOS);
     }
@@ -79,7 +78,7 @@ public class EjerciciosFragment extends Fragment {
         if (Activity.RESULT_OK == resultCode) {
             switch (requestCode) {
                 case REQUEST_SHOW_EJERCICIOS:
-                    loadEjercicios(db);
+                    loadEjercicios(bd);
                     break;
             }
         }

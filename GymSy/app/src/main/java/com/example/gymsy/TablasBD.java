@@ -14,6 +14,7 @@ public class TablasBD {
     public static abstract class UsuarioEntry implements BaseColumns {
         public static final String NOMBRE_TABLA = "usuarios";
 
+        public static final String TOKEN = "token";
         public static final String NOMBRE_USUARIO = "username";
         public static final String CONTRASENA = "password";
         public static final String ALTURA = "altura";
@@ -23,7 +24,6 @@ public class TablasBD {
         public static final String FREC_OBJ = "frecuenciaEjercicioObjetivo";
         public static final String LESION_SI_NO = "lesionSiLesionNo";
         public static final String ZONA_LESION = "zonaLesion";
-        public static final String ID_ASOCIACION_RUTINA = "idAsociacionRutina";
     }
 
     public static abstract class RutinaEntry implements BaseColumns {

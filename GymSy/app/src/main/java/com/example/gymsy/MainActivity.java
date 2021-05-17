@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        bd = new BaseDatos(getApplicationContext());
+
         foto = findViewById(R.id._foto);
         usuarioView = findViewById(R.id._heigh);
         usuario = findViewById(R.id._altura);
@@ -39,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
         contrasena = findViewById(R.id._peso);
         inicioSesion = findViewById(R.id._inicioSesion);
         registrarse = findViewById(R.id._registrarse);
-
-        bd = new BaseDatos(getApplicationContext());
-
     }
 
     public void iniciar(View view){
@@ -84,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
                 else if (jsonAnswer.contains("Logged")){
                     Toast toast = Toast.makeText(getApplicationContext(),"Inicio de Sesión correcto", Toast.LENGTH_SHORT);
                     toast.show();
-                    Intent intent = new Intent(this,Inicio.class);
+                    Inicio inicio = new Inicio(bd);
+                    Intent intent = new Intent(this,inicio.getClass());
                     intent.putExtra(Inicio.EXTRA_USUARIO_ID,_usuario);
                     startActivity(intent);
                 }
@@ -96,7 +97,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void registrar(View view){
-        Intent intent = new Intent(this,NuevoUsuario.class);
+        NuevoUsuario nuevoUsuario = new NuevoUsuario(bd);
+        Intent intent = new Intent(this,nuevoUsuario.getClass());
         startActivity(intent);
     }
 }

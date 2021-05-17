@@ -14,9 +14,15 @@ public class Inicio extends AppCompatActivity {
     public static final String EXTRA_EJERCICIO_ID = "extra_ejercicio_id";
     public static final String EXTRA_USUARIO_ID = "extra_usuario_id";
 
+    private BaseDatos bd;
+
     private Button acercaDe;
     private Button rendimiento;
     private Button logout;
+
+    public Inicio(BaseDatos bbdd){
+        bd = bbdd;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,7 +37,7 @@ public class Inicio extends AppCompatActivity {
                 getSupportFragmentManager().findFragmentById( R.id.ejercicio_container);
 
         if(fragment==null){
-            fragment = new EjerciciosFragment();
+            fragment = new EjerciciosFragment(bd);
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.ejercicio_container, fragment)
