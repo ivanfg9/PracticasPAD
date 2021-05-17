@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/gymsyAcercaDe"
             android:layout_width="match_parent"
-            android:layout_height="443dp"
+            android:layout_height="317dp"
             app:srcCompat="@drawable/gimsy" />
 
         <LinearLayout
