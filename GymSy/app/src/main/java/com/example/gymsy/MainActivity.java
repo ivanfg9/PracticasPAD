@@ -82,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 else if (jsonAnswer.contains("Logged")){
-                    Toast toast = Toast.makeText(getApplicationContext(),"Inicio de Sesión correcto", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "Inicio de Sesión correcto", Toast.LENGTH_SHORT);
                     toast.show();
                     Inicio inicio = new Inicio(bd);
                     Intent intent = new Intent(this,inicio.getClass());

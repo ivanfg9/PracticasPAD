@@ -39,7 +39,7 @@ public class EjerciciosFragment extends Fragment {
         ejerciciosCursorAdapter = new SimpleCursorAdapter(
                 getActivity(),
                 android.R.layout.two_line_list_item,
-                getEjercicios(),
+                bd.getEjercicios(),
                 new String[]{TablasBD.EjercicioEntry.IMAGEN_URI},
                 new int[]{R.id.iv_avatar},
                 SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
@@ -84,30 +84,5 @@ public class EjerciciosFragment extends Fragment {
     private void loadEjercicios(BaseDatos bd){
         EjerciciosLoadTask ej = new EjerciciosLoadTask(bd,ejerciciosCursorAdapter);
         ej.execute();
-    }
-
-    private Cursor getEjercicios(){
-        return bd.getReadableDatabase().query(
-                TablasBD.EjercicioEntry.NOMBRE_TABLA,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null);
-    }
-
-    private Cursor getEjercicioPorId(String idEjercicio){
-        String buscado[] = {idEjercicio};
-
-        Cursor c = bd.getReadableDatabase().query(
-                TablasBD.EjercicioEntry.NOMBRE_TABLA,
-                null,
-                TablasBD.EjercicioEntry._ID + " LIKE ?",
-                buscado,
-                null,
-                null,
-                null);
-        return c;
     }
 }

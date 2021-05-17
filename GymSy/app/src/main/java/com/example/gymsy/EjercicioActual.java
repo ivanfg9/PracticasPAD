@@ -1,6 +1,8 @@
 package com.example.gymsy;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -11,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
 
 public class EjercicioActual extends AppCompatActivity {
     private ImageView imagen;
@@ -64,7 +68,11 @@ public class EjercicioActual extends AppCompatActivity {
 
         c = bd.getEjercicioPorId(datosIntent.toString());
         descripcion.setText(c.getColumnIndex(TablasBD.EjercicioEntry.MUSCULO));
-        //imagen.setImageDrawable(R.drawable.);
+        Glide.with(this)
+                .load(Uri.parse("file:///" +
+                        c.getString(c.getColumnIndex(TablasBD.EjercicioEntry.IMAGEN_URI))))
+                .centerCrop()
+                .into(imagen);
 
         if(savedInstanceState != null){
             estadoComenzar = savedInstanceState.getBoolean("pulsado_comenzar");
@@ -98,6 +106,8 @@ public class EjercicioActual extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cronometro.stop();
+                Inicio inicio = new Inicio(bd);
+                Intent intent = new Intent(getApplicationContext(),inicio.getClass());
             }
         });
 

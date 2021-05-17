@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+
 import java.time.Instant;
 
 public class EjercicioCursorAdapter extends CursorAdapter {
@@ -33,7 +36,19 @@ public class EjercicioCursorAdapter extends CursorAdapter {
         ImageView avatarImage = (ImageView) view.findViewById(R.id.iv_avatar);
         String avatarUri = cursor.getString(cursor.getColumnIndex(TablasBD.EjercicioEntry.IMAGEN_URI));
 
-
+        Glide
+                .with(context)
+                .load(Uri.parse("file:///" + avatarUri))
+                .asBitmap()
+                .centerCrop()
+                .into(new BitmapImageViewTarget(avatarImage) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable drawable
+                                = RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                        avatarImage.setImageDrawable(drawable);
+                    }
+                });
 
     }
 }

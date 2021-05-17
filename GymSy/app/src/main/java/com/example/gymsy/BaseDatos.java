@@ -93,7 +93,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    /*public Cursor getEjercicios(){
+    public Cursor getEjercicios(){
         return this.getReadableDatabase().query(
                         TablasBD.EjercicioEntry.NOMBRE_TABLA,
                         null,
@@ -116,7 +116,7 @@ public class BaseDatos extends SQLiteOpenHelper {
                 null,
                 null);
         return c;
-    }*/
+    }
 
     public Cursor getRutinas(){
         return this.getReadableDatabase().query(
