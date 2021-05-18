@@ -8,11 +8,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/imageEjercicio"
-            android:layout_width="206dp"
+            android:layout_width="401dp"
             android:layout_height="213dp"
             tools:srcCompat="@tools:sample/avatars" />
 
@@ -23,8 +24,8 @@
 
             <LinearLayout
                 android:id="@+id/botones1"
-                android:layout_width="486dp"
-                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
                 android:background="#FFF"
                 android:orientation="horizontal">
 
@@ -33,7 +34,6 @@
                     android:layout_width="22dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#2D2F31"
                     android:src="@android:drawable/ic_media_play" />
 
                 <ImageButton
@@ -63,8 +63,8 @@
 
             <LinearLayout
                 android:id="@+id/botones2"
-                android:layout_width="490dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
                 android:background="#FFF"
                 android:orientation="horizontal">
 
@@ -91,7 +91,7 @@
 
             <LinearLayout
                 android:id="@+id/crono"
-                android:layout_width="491dp"
+                android:layout_width="401dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
@@ -123,7 +123,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="505dp"
+                android:layout_width="397dp"
                 android:layout_height="217dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
@@ -142,8 +142,8 @@
                     android:textStyle="bold" />
 
                 <ScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_width="match_parent"
+                    android:layout_height="179dp">
 
                     <TextView
                         android:id="@+id/_descripcionMusculo"
