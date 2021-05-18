@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ejercicio_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MiPerfil"
+    tools:showIn="@layout/mi_perfil">
+
+    <TextView
+        android:id="@+id/test26"
+        android:layout_width="match_parent"
+        android:layout_height="13dp"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:visibility="visible" />
+
+    <ListView
+        android:id="@+id/perfil_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>
