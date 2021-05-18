@@ -23,31 +23,37 @@
 
             <LinearLayout
                 android:id="@+id/botones1"
-                android:layout_width="461dp"
-                android:layout_height="95dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="#FFF"
                 android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/_play"
-                    android:layout_width="22dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@android:drawable/ic_media_play" />
-
-                <ImageButton
-                    android:id="@+id/_pause"
-                    android:layout_width="22dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@android:drawable/ic_media_pause" />
-
-                <ImageButton
-                    android:id="@+id/_stop"
+                <Button
+                    android:id="@+id/_before"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@android:drawable/checkbox_off_background" />
+                    app:icon="@drawable/abc_vector_test" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/_after"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    app:icon="@drawable/ic_baseline_arrow_forward_24"
+                    app:iconGravity="end" />
 
                 <!--<Button
                 android:id="@+id/_next"
@@ -61,9 +67,12 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/botones2"
                 android:layout_width="match_parent"
-                android:layout_height="62dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
                 android:background="#FFF"
                 android:orientation="horizontal">
 
@@ -90,8 +99,8 @@
 
             <LinearLayout
                 android:id="@+id/crono"
-                android:layout_width="446dp"
-                android:layout_height="72dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="4dp"
@@ -115,6 +124,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10sp"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:text="Repeticiones:"
                     android:textColor="#FF9800"
                     android:textSize="20sp"
@@ -122,8 +132,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="446dp"
-                android:layout_height="175dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginBottom="4dp"
@@ -136,13 +146,14 @@
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
                     android:layout_marginBottom="10sp"
+                    android:gravity="center"
                     android:text="Grupo muscular"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="140dp">
+                    android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/_descripcionMusculo"

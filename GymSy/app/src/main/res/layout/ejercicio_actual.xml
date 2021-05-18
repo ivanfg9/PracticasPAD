@@ -29,26 +29,20 @@
                 android:background="#FFF"
                 android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/_play"
-                    android:layout_width="22dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@android:drawable/ic_media_play" />
-
-                <ImageButton
-                    android:id="@+id/_pause"
-                    android:layout_width="22dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@android:drawable/ic_media_pause" />
-
-                <ImageButton
-                    android:id="@+id/_stop"
+                <Button
+                    android:id="@+id/_before"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@android:drawable/checkbox_off_background" />
+                    app:icon="@drawable/abc_vector_test" />
+
+                <Button
+                    android:id="@+id/_after"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:icon="@drawable/ic_baseline_arrow_forward_24"
+                    app:iconGravity="end" />
 
                 <!--<Button
                 android:id="@+id/_next"
@@ -116,6 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10sp"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:text="Repeticiones:"
                     android:textColor="#FF9800"
                     android:textSize="20sp"
@@ -137,6 +132,7 @@
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
                     android:layout_marginBottom="10sp"
+                    android:gravity="center"
                     android:text="Grupo muscular"
                     android:textSize="18sp"
                     android:textStyle="bold" />

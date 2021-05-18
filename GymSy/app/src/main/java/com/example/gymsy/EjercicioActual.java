@@ -1,8 +1,6 @@
 package com.example.gymsy;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
@@ -15,8 +13,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
 import com.example.gymsy.connection.PostData;
+import com.google.android.material.button.MaterialButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,9 +29,9 @@ public class EjercicioActual extends AppCompatActivity {
     private Button start;
     private Button terminar;
     //private Button siguiente;
-    private ImageButton play;
-    private ImageButton pause;
-    private ImageButton stop;
+    private Button before;
+    private Button pause;
+    private Button next;
     private Chronometer cronometro;
 
     private int id_ejercicio;
@@ -43,7 +41,7 @@ public class EjercicioActual extends AppCompatActivity {
     private int id_rutina;
     private boolean estadoPlay;
     private boolean estadoComenzar;
-
+    private static final int REQUEST_SHOW_EJERCICIOS = 2;
     private String data = "";
     private String url = "http://35.180.41.33/ejercicios/id/";
 
@@ -58,9 +56,8 @@ public class EjercicioActual extends AppCompatActivity {
         setContentView(R.layout.ejercicio_actual);
 
         imagen  = findViewById(R.id.imageEjercicio);
-        play = findViewById(R.id._play);
-        pause = findViewById(R.id._pause);
-        stop = findViewById(R.id._stop);
+        before = findViewById(R.id._before);
+        next = findViewById(R.id._after);
         //siguiente = findViewById(R.id._next);
         start = findViewById(R.id._start);
         terminar = findViewById(R.id._finish);
@@ -86,7 +83,7 @@ public class EjercicioActual extends AppCompatActivity {
 
 
             JSONObject defDataJSON = arr.getJSONObject(0);
-            repeticiones.setText(defDataJSON.getString("repeticiones"));
+            repeticiones.setText(defDataJSON.getString("repeticiones") + " repeticiones");
             descripcion.setText(defDataJSON.getString("descripcion"));
 
 
@@ -143,24 +140,36 @@ public class EjercicioActual extends AppCompatActivity {
             }
         });
 
-        play.setOnClickListener(new View.OnClickListener() {
+        before.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                estadoPlay=true;
+                    Log.e("test", "a");
+                    EjercicioActual ejercicioActual = new EjercicioActual();
+                    Intent intent = new Intent(getApplicationContext(), ejercicioActual.getClass());
+                    intent.putExtra(Inicio.EXTRA_EJERCICIO_ID, id_ejercicio - 2 );
+                    startActivityForResult(intent, REQUEST_SHOW_EJERCICIOS);
+
+
             }
         });
 
-        pause.setOnClickListener(new View.OnClickListener() {
+        /*pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 estadoPlay=false;
             }
-        });
+        });*/
 
-        stop.setOnClickListener(new View.OnClickListener() {
+        next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                estadoComenzar=false;
+
+                    EjercicioActual ejercicioActual = new EjercicioActual();
+                    Intent intent = new Intent(getApplicationContext(), ejercicioActual.getClass());
+                    intent.putExtra(Inicio.EXTRA_EJERCICIO_ID, id_ejercicio );
+                    startActivityForResult(intent, REQUEST_SHOW_EJERCICIOS);
+
+
             }
         });
 
@@ -186,3 +195,8 @@ public class EjercicioActual extends AppCompatActivity {
     }
 
 }
+
+/*
+
+
+                */
