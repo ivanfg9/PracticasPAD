@@ -1,6 +1,8 @@
 package com.example.gymsy;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -62,6 +64,15 @@ public class Inicio extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences preferences = getSharedPreferences("usuarios", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.remove("username");
+                editor.remove("altura");
+                editor.remove("peso");
+                editor.remove("etapa");
+                editor.remove("token");
+                editor.commit();
+
                 finish();
             }
         });

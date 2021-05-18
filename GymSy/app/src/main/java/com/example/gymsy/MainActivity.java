@@ -2,6 +2,7 @@ package com.example.gymsy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -16,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gymsy.connection.PostData;
+
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,14 +35,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        foto = findViewById(R.id._foto);
-        usuarioView = findViewById(R.id._heigh);
-        usuario = findViewById(R.id._altura);
-        contrasenaView = findViewById(R.id._weight);
-        contrasena = findViewById(R.id._peso);
-        inicioSesion = findViewById(R.id._inicioSesion);
-        registrarse = findViewById(R.id._registrarse);
+        SharedPreferences preferences = this.getSharedPreferences("usuarios",Context.MODE_PRIVATE);
+        String token = preferences.getString("token","No existe token");
+        if(token.equalsIgnoreCase("No existe token")){
+            foto = findViewById(R.id._foto);
+            usuarioView = findViewById(R.id._heigh);
+            usuario = findViewById(R.id._altura);
+            contrasenaView = findViewById(R.id._weight);
+            contrasena = findViewById(R.id._peso);
+            inicioSesion = findViewById(R.id._inicioSesion);
+            registrarse = findViewById(R.id._registrarse);
+        }
+        else{
+            Inicio inicio = new Inicio();
+            Intent intent = new Intent(this,inicio.getClass());
+            intent.putExtra(Inicio.EXTRA_USUARIO_ID,preferences.getString("username","user"));
+            startActivity(intent);
+        }
     }
 
     public void iniciar(View view){
@@ -83,6 +95,30 @@ public class MainActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(getApplicationContext(),
                             "Inicio de Sesión correcto", Toast.LENGTH_SHORT);
                     toast.show();
+
+                    String jsonAnswer2;
+                    JSONObject json = new JSONObject(jsonAnswer);
+                    String token = json.getString("token");
+                    String data2 = "token="+token;
+                    String url2 = "http://35.180.41.33/identity/user/";
+
+                    PostData loginConnection2 = new PostData(data2,url2);
+                    Thread thread2 = new Thread(loginConnection2);
+                    thread2.start();
+                    thread2.join();
+                    jsonAnswer2 = loginConnection2.getValue();
+                    JSONObject json2 = new JSONObject(jsonAnswer2);
+                    Log.e("test",jsonAnswer2);
+
+                    SharedPreferences preferences = this.getSharedPreferences("usuarios",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("username",json2.getString("username"));
+                    editor.putString("altura",json2.getString("altura"));
+                    editor.putString("peso",json2.getString("peso"));
+                    editor.putString("etapa",json2.getString("etapa"));
+                    editor.putString("token",token);
+                    editor.commit();
+
                     Inicio inicio = new Inicio();
                     Intent intent = new Intent(this,inicio.getClass());
                     intent.putExtra(Inicio.EXTRA_USUARIO_ID,_usuario);
