@@ -8,45 +8,49 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/imageEjercicio"
-            android:layout_width="match_parent"
-            android:layout_height="382dp"
+            android:layout_width="206dp"
+            android:layout_height="213dp"
             tools:srcCompat="@tools:sample/avatars" />
 
         <LinearLayout
-            android:id="@+id/botones1"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#FFF"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/_play"
-                android:layout_width="16dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:src="@android:drawable/ic_media_play" />
+            <LinearLayout
+                android:id="@+id/botones1"
+                android:layout_width="486dp"
+                android:layout_height="50dp"
+                android:background="#FFF"
+                android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/_pause"
-                android:layout_width="22dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@android:drawable/ic_media_pause" />
+                <ImageButton
+                    android:id="@+id/_play"
+                    android:layout_width="22dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#2D2F31"
+                    android:src="@android:drawable/ic_media_play" />
 
-            <ImageButton
-                android:id="@+id/_stop"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@android:drawable/checkbox_off_background" />
+                <ImageButton
+                    android:id="@+id/_pause"
+                    android:layout_width="22dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@android:drawable/ic_media_pause" />
 
-            <!--<Button
+                <ImageButton
+                    android:id="@+id/_stop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@android:drawable/checkbox_off_background" />
+
+                <!--<Button
                 android:id="@+id/_next"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -55,101 +59,104 @@
                 android:textColor="#F6F6F5"
                 android:textStyle="bold"
                 app:backgroundTint="#FF9800" />-->
-        </LinearLayout>
+            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/botones2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFF"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/_start"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/botones2"
+                android:layout_width="490dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#0F0"
-                android:text="Start"
-                android:textStyle="bold"
-                app:backgroundTint="#FF9800" />
+                android:background="#FFF"
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/_finish"
-                android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#0F0"
+                    android:text="Start"
+                    android:textStyle="bold"
+                    app:backgroundTint="#FF9800" />
+
+                <Button
+                    android:id="@+id/_finish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#F00"
+                    android:text="Finish"
+                    android:textStyle="bold"
+                    app:backgroundTint="#FF9800" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/crono"
+                android:layout_width="491dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#F00"
-                android:text="Finish"
-                android:textStyle="bold"
-                app:backgroundTint="#FF9800" />
-        </LinearLayout>
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/crono"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:orientation="horizontal">
-
-            <Chronometer
-                android:id="@+id/_cronometro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10sp"
-                android:layout_weight="3"
-                android:format="%s"
-                android:textSize="25sp" />
-
-            <TextView
-                android:id="@+id/_repeticiones"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10sp"
-                android:layout_weight="1"
-                android:text="Repeticiones:"
-                android:textColor="#FF9800"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="411dp"
-            android:layout_height="154dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/_musculo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginBottom="10sp"
-                android:text="Grupo muscular"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                <Chronometer
+                    android:id="@+id/_cronometro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:layout_weight="3"
+                    android:format="%s"
+                    android:textSize="25sp" />
 
                 <TextView
-                    android:id="@+id/_descripcionMusculo"
+                    android:id="@+id/_repeticiones"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:layout_weight="1"
+                    android:text="Repeticiones:"
+                    android:textColor="#FF9800"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="505dp"
+                android:layout_height="217dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/_musculo"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
-                    android:layout_marginBottom="10sp" />
-            </ScrollView>
+                    android:layout_marginBottom="10sp"
+                    android:text="Grupo muscular"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <ScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/_descripcionMusculo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginRight="10sp"
+                        android:layout_marginBottom="10sp" />
+                </ScrollView>
+            </LinearLayout>
+
         </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>
