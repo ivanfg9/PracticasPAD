@@ -35,19 +35,22 @@ public class Rutina {
     }
 
     public Rutina(Cursor cursor) {
+        /*
         diaEntreno = cursor.getString(cursor.getColumnIndex(TablasBD.RutinaEntry.DIA_ENTRENO));
         idEjercicio = cursor.getInt(cursor.getColumnIndex(TablasBD.RutinaEntry.ID_EJERCICIO));
         repeticiones = cursor.getInt(cursor.getColumnIndex(TablasBD.RutinaEntry.REPETICIONES));
         pesoLevantado = cursor.getInt(cursor.getColumnIndex(TablasBD.RutinaEntry.PESO_LEVANTADO));
+
+         */
     }
 
     public ContentValues toContentValues() {
         ContentValues values = new ContentValues();
-
+/*
         values.put(TablasBD.RutinaEntry.DIA_ENTRENO, diaEntreno);
         values.put(TablasBD.RutinaEntry.ID_EJERCICIO, idEjercicio);
         values.put(TablasBD.RutinaEntry.REPETICIONES, repeticiones);
-        values.put(TablasBD.RutinaEntry.PESO_LEVANTADO, pesoLevantado);
+        values.put(TablasBD.RutinaEntry.PESO_LEVANTADO, pesoLevantado);*/
 
         return values;
     }

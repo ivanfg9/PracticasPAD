@@ -7,16 +7,15 @@ import android.widget.SimpleCursorAdapter;
 
 public class EjerciciosLoadTask extends AsyncTask<Void,Void, Cursor> {
 
-    private BaseDatos bd;
+
     private SimpleCursorAdapter sca;
 
-    public EjerciciosLoadTask(BaseDatos db, SimpleCursorAdapter cursorAdapter){
-        bd = db;
+    public EjerciciosLoadTask( SimpleCursorAdapter cursorAdapter){
         sca = cursorAdapter;
     }
     @Override
     protected Cursor doInBackground(Void... voids) {
-        return bd.getEjercicios();
+        return null;
     }
 
     @Override

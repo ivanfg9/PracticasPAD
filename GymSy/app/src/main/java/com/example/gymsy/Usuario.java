@@ -64,6 +64,8 @@ public class Usuario {
     }
 
     public Usuario(Cursor cursor) {
+
+        /*
         nombreUsuario = cursor.getString(cursor.getColumnIndex(TablasBD.UsuarioEntry.NOMBRE_USUARIO));
         contrasena = cursor.getString(cursor.getColumnIndex(TablasBD.UsuarioEntry.CONTRASENA));
         altura = cursor.getInt(cursor.getColumnIndex(TablasBD.UsuarioEntry.ALTURA));
@@ -72,12 +74,12 @@ public class Usuario {
         frecActual = cursor.getString(cursor.getColumnIndex(TablasBD.UsuarioEntry.FREC_ACTUAL));
         frecObj = cursor.getString(cursor.getColumnIndex(TablasBD.UsuarioEntry.FREC_OBJ));
         lesion = cursor.getString(cursor.getColumnIndex(TablasBD.UsuarioEntry.LESION_SI_NO));
-        zonaLesion = cursor.getString(cursor.getColumnIndex(TablasBD.UsuarioEntry.ZONA_LESION));
+        zonaLesion = cursor.getString(cursor.getColumnIndex(TablasBD.UsuarioEntry.ZONA_LESION));*/
     }
 
     public ContentValues toContentValues() {
         ContentValues values = new ContentValues();
-
+/*
         values.put(TablasBD.UsuarioEntry.NOMBRE_USUARIO, "ivan");
         values.put(TablasBD.UsuarioEntry.CONTRASENA, "1234");
         values.put(TablasBD.UsuarioEntry.ALTURA, "178");
@@ -87,7 +89,7 @@ public class Usuario {
         values.put(TablasBD.UsuarioEntry.FREC_OBJ, "5/mas veces/semana");
         values.put(TablasBD.UsuarioEntry.LESION_SI_NO, "No");
         values.put(TablasBD.UsuarioEntry.ZONA_LESION, "");
-
+*/
         return values;
     }
 }

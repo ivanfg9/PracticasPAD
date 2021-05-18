@@ -1,5 +1,7 @@
 package com.example.gymsy.connection;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -61,6 +63,24 @@ public class PostData implements Runnable {
             }
         }
         return sb.toString();
+    }
+
+
+    public String postData() {
+
+        try {
+            Thread thread = new Thread(this);
+            thread.start();
+            thread.join();
+            String jsonResult = this.getValue();
+            Log.e("test", jsonResult );
+            return jsonResult;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            String fail = "{\"msg\":\"Username Exists\"}";
+            return fail;
+        }
     }
 
 

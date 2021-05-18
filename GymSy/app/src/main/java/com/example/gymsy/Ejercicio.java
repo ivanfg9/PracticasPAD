@@ -25,17 +25,17 @@ public class Ejercicio {
     }
 
     public Ejercicio(Cursor cursor) {
-        nombreEjercicio = cursor.getString(cursor.getColumnIndex(TablasBD.EjercicioEntry.NOMBRE));
-        musculo = cursor.getString(cursor.getColumnIndex(TablasBD.EjercicioEntry.MUSCULO));
-        imagenEjercicio = cursor.getString(cursor.getColumnIndex(TablasBD.EjercicioEntry.IMAGEN_URI));
+        nombreEjercicio = cursor.getString(1/*cursor.getColumnIndex(TablasBD.EjercicioEntry.NOMBRE)*/);
+        musculo = cursor.getString(1/*cursor.getColumnIndex(TablasBD.EjercicioEntry.MUSCULO)*/);
+        imagenEjercicio = cursor.getString(1 /*cursor.getColumnIndex(TablasBD.EjercicioEntry.IMAGEN_URI)*/);
     }
 
     public ContentValues toContentValues() {
         ContentValues values = new ContentValues();
-
+/*
         values.put(TablasBD.EjercicioEntry.NOMBRE, nombreEjercicio);
         values.put(TablasBD.EjercicioEntry.MUSCULO, musculo);
-        values.put(TablasBD.EjercicioEntry.IMAGEN_URI, imagenEjercicio);
+        values.put(TablasBD.EjercicioEntry.IMAGEN_URI, imagenEjercicio); */
 
         return values;
     }

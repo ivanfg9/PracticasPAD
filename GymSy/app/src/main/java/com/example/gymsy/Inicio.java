@@ -14,14 +14,12 @@ public class Inicio extends AppCompatActivity {
     public static final String EXTRA_EJERCICIO_ID = "extra_ejercicio_id";
     public static final String EXTRA_USUARIO_ID = "extra_usuario_id";
 
-    private BaseDatos bd;
 
     private Button acercaDe;
     private Button rendimiento;
     private Button logout;
 
-    public Inicio(BaseDatos bbdd){
-        bd = bbdd;
+    public Inicio(){
     }
 
     @Override
@@ -36,8 +34,9 @@ public class Inicio extends AppCompatActivity {
         EjerciciosFragment fragment = (EjerciciosFragment)
                 getSupportFragmentManager().findFragmentById( R.id.ejercicio_container);
 
+
         if(fragment==null){
-            fragment = new EjerciciosFragment(bd);
+            fragment = new EjerciciosFragment();
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.ejercicio_container, fragment)
@@ -67,4 +66,6 @@ public class Inicio extends AppCompatActivity {
             }
         });
     }
+
+
 }

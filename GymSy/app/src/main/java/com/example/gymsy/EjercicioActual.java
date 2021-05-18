@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -33,14 +34,13 @@ public class EjercicioActual extends AppCompatActivity {
     private int id_ejercicio;
     private int totalRepeticiones = 0;
     private String musculo = "";
-    private BaseDatos bd;
     private long tiempoCrono;
     private int id_rutina;
     private boolean estadoPlay;
     private boolean estadoComenzar;
 
-    public EjercicioActual(BaseDatos bbdd){
-        bd = bbdd;
+    public EjercicioActual(){
+
     }
 
     @Override
@@ -61,9 +61,12 @@ public class EjercicioActual extends AppCompatActivity {
         descripcion = findViewById(R.id._descripcionMusculo);
 
         Bundle datosIntent = getIntent().getExtras();
-        id_ejercicio = Integer.valueOf(datosIntent.toString());
 
-        Cursor c = bd.getRutinaPorIdEjercicio(datosIntent.toString());
+        id_ejercicio = datosIntent.getInt("extra_ejercicio_id") + 1;
+        Log.e("test", Integer.toString(id_ejercicio));
+
+
+        /*Cursor c = bd.getRutinaPorIdEjercicio(datosIntent.toString());
         repeticiones.setText(c.getColumnIndex(TablasBD.RutinaEntry.REPETICIONES));
 
         c = bd.getEjercicioPorId(datosIntent.toString());
@@ -72,7 +75,7 @@ public class EjercicioActual extends AppCompatActivity {
                 .load(Uri.parse("file:/app/src/main/res/drawable/" +
                         c.getString(c.getColumnIndex(TablasBD.EjercicioEntry.IMAGEN_URI))))
                 .centerCrop()
-                .into(imagen);
+                .into(imagen); */
 
         if(savedInstanceState != null){
             estadoComenzar = savedInstanceState.getBoolean("pulsado_comenzar");
@@ -106,7 +109,7 @@ public class EjercicioActual extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cronometro.stop();
-                Inicio inicio = new Inicio(bd);
+                Inicio inicio = new Inicio();
                 Intent intent = new Intent(getApplicationContext(),inicio.getClass());
             }
         });

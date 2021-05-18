@@ -19,6 +19,7 @@
         <activity android:name=".NuevoUsuario"/>
         <activity android:name=".Inicio"/>
         <activity android:name=".AcercaDe"/>
+        <activity android:name=".EjercicioActual"/>
 
     </application>
 

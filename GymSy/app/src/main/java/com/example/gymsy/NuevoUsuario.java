@@ -33,8 +33,6 @@ public class NuevoUsuario extends Activity {
     String [] frecuencias = {"Ninguna/1 vez/semana", "3/4 veces/semana", "5/mas veces/semanas"};
     String [] lesion = {"Si", "No"};
 
-    private BaseDatos bd;
-
     private TextView username;
     private EditText nombreUsuario;
     private TextView password;
@@ -65,8 +63,8 @@ public class NuevoUsuario extends Activity {
     private String _zonaLesion;
     private String _contrasenia;
 
-    public NuevoUsuario(BaseDatos bbdd){
-        bd = bbdd;
+    public NuevoUsuario(){
+
     }
 
     @Override
@@ -141,9 +139,6 @@ public class NuevoUsuario extends Activity {
                 toast.show();
             }
             else if(jsonRet.contains("Registered")){
-                Usuario u = new Usuario(_nombreUsuario,_contrasenia, Integer.valueOf(_altura),
-                        Integer.valueOf(_peso), _etapa, _frecActual, _frecObjetivo, _lesionSiNo, _zonaLesion);
-                bd.insert(bd.getWritableDatabase(), TablasBD.UsuarioEntry.NOMBRE_TABLA,null, u.toContentValues());
                 Toast toast = Toast.makeText(getApplicationContext(),"Registrado!", Toast.LENGTH_SHORT);
                 toast.show();
             }

@@ -26,14 +26,12 @@ public class MainActivity extends AppCompatActivity {
     private Button inicioSesion;
     private Button registrarse;
 
-    private BaseDatos bd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bd = new BaseDatos(getApplicationContext());
 
         foto = findViewById(R.id._foto);
         usuarioView = findViewById(R.id._heigh);
@@ -85,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(getApplicationContext(),
                             "Inicio de Sesión correcto", Toast.LENGTH_SHORT);
                     toast.show();
-                    Inicio inicio = new Inicio(bd);
+                    Inicio inicio = new Inicio();
                     Intent intent = new Intent(this,inicio.getClass());
                     intent.putExtra(Inicio.EXTRA_USUARIO_ID,_usuario);
                     startActivity(intent);
@@ -98,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void registrar(View view){
-        NuevoUsuario nuevoUsuario = new NuevoUsuario(bd);
+        NuevoUsuario nuevoUsuario = new NuevoUsuario();
         Intent intent = new Intent(this,nuevoUsuario.getClass());
         startActivity(intent);
     }

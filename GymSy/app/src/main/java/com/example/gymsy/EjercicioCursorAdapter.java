@@ -30,11 +30,13 @@ public class EjercicioCursorAdapter extends CursorAdapter {
         return inflater.inflate(R.layout.list_item_ejercicio, parent, false);
     }
 
+
+
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
 
         ImageView avatarImage = (ImageView) view.findViewById(R.id.iv_avatar);
-        String avatarUri = cursor.getString(cursor.getColumnIndex(TablasBD.EjercicioEntry.IMAGEN_URI));
+        String avatarUri = cursor.getString(1/*cursor.getColumnIndex(TablasBD.EjercicioEntry.IMAGEN_URI)*/);
 
         Glide
                 .with(context)
