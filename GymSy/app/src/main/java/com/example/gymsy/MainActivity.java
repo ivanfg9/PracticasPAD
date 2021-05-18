@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences preferences = this.getSharedPreferences("usuarios",Context.MODE_PRIVATE);
         String token = preferences.getString("token","No existe token");
+        Log.e("test", token);
         if(token.equalsIgnoreCase("No existe token")){
             foto = findViewById(R.id._foto);
             usuarioView = findViewById(R.id._heigh);
