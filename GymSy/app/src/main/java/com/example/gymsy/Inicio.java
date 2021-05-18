@@ -46,7 +46,7 @@ public class Inicio extends AppCompatActivity {
         rendimiento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Rendimiento.class);
+                Intent intent = new Intent(getApplicationContext(), MiPerfil.class);
                 startActivity(intent);
             }
         });
