@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             try{
 
                 String data = "username="+_usuario+"&password="+_contrasena;
-                String url = "http://192.168.0.196:5000/auth/login/";
+                String url = "http://35.180.41.33/auth/login/";
                 PostData loginConnection = new PostData(data,url);
                 Thread thread = new Thread(loginConnection);
                 thread.start();

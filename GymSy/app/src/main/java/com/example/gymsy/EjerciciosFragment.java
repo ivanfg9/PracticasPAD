@@ -31,7 +31,7 @@ public class EjerciciosFragment extends Fragment {
     private ListView ejerciciosListView;
     private SimpleCursorAdapter ejerciciosCursorAdapter;
     private String data = "";
-    private String url = "http://192.168.0.196:5000/ejercicios/all/";
+    private String url = "http://35.180.41.33/ejercicios/all/";
 
     public EjerciciosFragment() {
     }

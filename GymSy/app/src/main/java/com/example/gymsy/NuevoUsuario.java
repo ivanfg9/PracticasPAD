@@ -121,6 +121,10 @@ public class NuevoUsuario extends Activity {
 
         if (_lesionSiNo.equalsIgnoreCase("Si")){
             _zonaLesion = zonaLesion.getText().toString();
+            _lesionSiNo = "1";
+        }
+        else{
+            _lesionSiNo = "0";
         }
         int nivel;
 
@@ -164,7 +168,7 @@ public class NuevoUsuario extends Activity {
         try {
 
             String data = "username="+_nombreUsuario+"&password="+_contrasenia+"&altura="+_altura+"&peso="+_peso+"&etapa="+_etapa+"&lesion="+_lesionSiNo+"&zonaLesion="+_zonaLesion;
-            String url = "http://192.168.0.196:5000/auth/register/";
+            String url = "http://35.180.41.33/auth/register/";
             PostData foo = new PostData(data, url);
             Thread thread = new Thread(foo);
             thread.start();

@@ -16,6 +16,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.gymsy.connection.PostData;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class EjercicioActual extends AppCompatActivity {
     private ImageView imagen;
@@ -38,6 +43,10 @@ public class EjercicioActual extends AppCompatActivity {
     private int id_rutina;
     private boolean estadoPlay;
     private boolean estadoComenzar;
+
+    private String data = "";
+    private String url = "http://35.180.41.33/ejercicios/id/";
+
 
     public EjercicioActual(){
 
@@ -62,9 +71,29 @@ public class EjercicioActual extends AppCompatActivity {
 
         Bundle datosIntent = getIntent().getExtras();
 
-        id_ejercicio = datosIntent.getInt("extra_ejercicio_id") + 1;
-        Log.e("test", Integer.toString(id_ejercicio));
 
+        id_ejercicio = datosIntent.getInt("extra_ejercicio_id") + 1;
+
+        data = "id=" + id_ejercicio;
+        PostData post = new PostData(data, url); // Ejemplo de lo que devuelve: { "msg":"Success", "data":[{"id":"1", "nombre":"Biceps con Mancuerna", "descripcion":"Aqui una explicacion de mierda sobre como hacer este ejercicio.", "repeticiones":"12", "secs":"40" }] }
+        String ejercicioJSON = post.postData();
+        Log.e("test",  ejercicioJSON);
+
+        try {
+
+            JSONObject json = new JSONObject( ejercicioJSON);
+            JSONArray arr = json.getJSONArray("data");
+
+
+            JSONObject defDataJSON = arr.getJSONObject(0);
+            repeticiones.setText(defDataJSON.getString("repeticiones"));
+            descripcion.setText(defDataJSON.getString("descripcion"));
+
+
+        }catch(JSONException jsonEx){
+            Log.e("test", "Failed to convert to JSON");
+            jsonEx.printStackTrace();
+        }
 
         /*Cursor c = bd.getRutinaPorIdEjercicio(datosIntent.toString());
         repeticiones.setText(c.getColumnIndex(TablasBD.RutinaEntry.REPETICIONES));
@@ -93,7 +122,7 @@ public class EjercicioActual extends AppCompatActivity {
             }
         }
 
-        descripcion.setText(musculo);
+        //descripcion.setText(musculo);
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
