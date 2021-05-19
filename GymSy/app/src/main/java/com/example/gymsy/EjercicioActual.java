@@ -55,9 +55,7 @@ public class EjercicioActual extends AppCompatActivity {
 
     }
 
-    public EjercicioActual(int numEjercicios){
-        numTotalEjercicios = numEjercicios;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -93,7 +91,7 @@ public class EjercicioActual extends AppCompatActivity {
 
             JSONObject json = new JSONObject( ejercicioJSON);
             JSONArray arr = json.getJSONArray("data");
-
+            numTotalEjercicios=arr.length();
 
             JSONObject defDataJSON = arr.getJSONObject(0);
             repeticiones.setText(defDataJSON.getString("repeticiones") + " repeticiones");
@@ -167,8 +165,8 @@ public class EjercicioActual extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(id_ejercicio + 1 <= numTotalEjercicios) {
-                    EjercicioActual ejercicioActual = new EjercicioActual(numTotalEjercicios);
+                if(id_ejercicio < EjerciciosFragment.numEjerciciosTotales) {
+                    EjercicioActual ejercicioActual = new EjercicioActual();
                     Intent intent = new Intent(getApplicationContext(), ejercicioActual.getClass());
                     intent.putExtra(Inicio.EXTRA_EJERCICIO_ID, id_ejercicio);
                     startActivityForResult(intent, REQUEST_SHOW_EJERCICIOS);
@@ -202,4 +200,4 @@ public class EjercicioActual extends AppCompatActivity {
 /*
 
 
-                */
+ */

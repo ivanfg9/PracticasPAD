@@ -31,6 +31,7 @@ public class EjerciciosFragment extends Fragment {
     private ListView ejerciciosListView;
     private SimpleCursorAdapter ejerciciosCursorAdapter;
     private int numEjercicios;
+    public static int numEjerciciosTotales=0;
     private String data = "";
     private String url = "http://35.180.41.33/ejercicios/all/";
 
@@ -56,11 +57,12 @@ public class EjerciciosFragment extends Fragment {
             JSONObject json = new JSONObject(allEjerciciosJSON);
             JSONArray arr = json.getJSONArray("data");
             list = new String[arr.length()];
-           for(int i = 0; i < arr.length(); i++){
-               list[i] = arr.getJSONObject(i).getString("nombre");
-           }
+            numEjerciciosTotales=arr.length();
+            for(int i = 0; i < arr.length(); i++){
+                list[i] = arr.getJSONObject(i).getString("nombre");
+            }
 
-           numEjercicios = arr.length();
+            numEjercicios = arr.length();
 
         }catch(JSONException jsonEx){
             Log.e("test", "Failed to convert to JSON");
@@ -92,7 +94,7 @@ public class EjerciciosFragment extends Fragment {
     }
 
     private void showEjercicioScreen(int ejercicioId) {
-        EjercicioActual ejercicioActual = new EjercicioActual(numEjercicios);
+        EjercicioActual ejercicioActual = new EjercicioActual();
         Intent intent = new Intent(getActivity(), ejercicioActual.getClass());
         intent.putExtra(Inicio.EXTRA_EJERCICIO_ID, ejercicioId);
         startActivityForResult(intent, REQUEST_SHOW_EJERCICIOS);
