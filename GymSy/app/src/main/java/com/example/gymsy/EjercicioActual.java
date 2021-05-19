@@ -1,6 +1,8 @@
 package com.example.gymsy;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
@@ -12,7 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
+import com.bumptech.glide.load.engine.Resource;
 import com.example.gymsy.connection.PostData;
 import com.google.android.material.button.MaterialButton;
 
@@ -70,6 +74,10 @@ public class EjercicioActual extends AppCompatActivity {
 
 
         id_ejercicio = datosIntent.getInt("extra_ejercicio_id") + 1;
+        
+        Resources res = getResources();
+        Drawable drawable = ResourcesCompat.getDrawable(res,R.drawable.gimsy,null);
+        imagen.setImageDrawable(drawable);
 
         data = "id=" + id_ejercicio;
         PostData post = new PostData(data, url); // Ejemplo de lo que devuelve: { "msg":"Success", "data":[{"id":"1", "nombre":"Biceps con Mancuerna", "descripcion":"Aqui una explicacion de mierda sobre como hacer este ejercicio.", "repeticiones":"12", "secs":"40" }] }
