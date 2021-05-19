@@ -7,10 +7,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="com.example.gymsy.MainActivity" >
+    tools:context="com.example.gymsy.MainActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="85dp"
         android:layout_weight="1">
 
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/_heigh"
@@ -39,7 +39,7 @@
         <EditText
             android:id="@+id/_altura"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:ems="10"
             android:hint="introduce_usuario"
             android:paddingLeft="8dp"
@@ -47,55 +47,59 @@
 
             <requestFocus android:layout_width="wrap_content" />
         </EditText>
-     </LinearLayout>
+    </LinearLayout>
 
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_weight="1"
-         android:orientation="vertical" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-         <TextView
-             android:id="@+id/_weight"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_marginTop="18sp"
-             android:text="Contraseña" />
+        <TextView
+            android:id="@+id/_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18sp"
+            android:text="Contraseña" />
 
-         <EditText
-             android:id="@+id/_pesoString"
-             android:layout_width="match_parent"
-             android:layout_height="40dp"
-             android:ems="10"
-             android:hint="introduce_contrasenia"
-             android:inputType="textPassword"
-             android:paddingLeft="8dp"
-             android:paddingRight="8dp" />
-     </LinearLayout>
+        <EditText
+            android:id="@+id/_pesoString"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:hint="introduce_contrasenia"
+            android:inputType="textPassword"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+    </LinearLayout>
 
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginTop="35sp"
-         android:layout_weight="1"
-         android:orientation="vertical" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35sp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-         <Button
-             android:id="@+id/_inicioSesion"
-             android:layout_width="225dp"
-             android:layout_height="40sp"
-             android:layout_gravity="center"
-             android:layout_margin="10dp"
-             android:onClick="iniciar"
-             android:text="Iniciar Sesion" />
+        <Button
+            android:id="@+id/_inicioSesion"
+            android:layout_width="225dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:onClick="iniciar"
+            android:text="Iniciar Sesion" />
 
-         <Button
-             android:id="@+id/_registrarse"
-             android:layout_width="225dp"
-             android:layout_height="40sp"
-             android:layout_gravity="center"
-             android:onClick="registrar"
-             android:text="Registrate" />
-     </LinearLayout>
+        <Button
+            android:id="@+id/_registrarse"
+            android:layout_width="225dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:onClick="registrar"
+            android:text="Registrate" />
+    </LinearLayout>
 
 </LinearLayout>
