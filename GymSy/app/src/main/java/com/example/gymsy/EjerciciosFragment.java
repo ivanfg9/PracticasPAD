@@ -30,10 +30,12 @@ public class EjerciciosFragment extends Fragment {
 
     private ListView ejerciciosListView;
     private SimpleCursorAdapter ejerciciosCursorAdapter;
+    private int numEjercicios;
     private String data = "";
     private String url = "http://35.180.41.33/ejercicios/all/";
 
     public EjerciciosFragment() {
+        numEjercicios = 0;
     }
 
     @Override
@@ -57,6 +59,8 @@ public class EjerciciosFragment extends Fragment {
            for(int i = 0; i < arr.length(); i++){
                list[i] = arr.getJSONObject(i).getString("nombre");
            }
+
+           numEjercicios = arr.length();
 
         }catch(JSONException jsonEx){
             Log.e("test", "Failed to convert to JSON");
@@ -88,7 +92,7 @@ public class EjerciciosFragment extends Fragment {
     }
 
     private void showEjercicioScreen(int ejercicioId) {
-        EjercicioActual ejercicioActual = new EjercicioActual();
+        EjercicioActual ejercicioActual = new EjercicioActual(numEjercicios);
         Intent intent = new Intent(getActivity(), ejercicioActual.getClass());
         intent.putExtra(Inicio.EXTRA_EJERCICIO_ID, ejercicioId);
         startActivityForResult(intent, REQUEST_SHOW_EJERCICIOS);

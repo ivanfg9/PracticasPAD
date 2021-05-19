@@ -40,6 +40,7 @@ public class EjercicioActual extends AppCompatActivity {
 
     private int id_ejercicio;
     private int totalRepeticiones = 0;
+    private int numTotalEjercicios;
     private String musculo = "";
     private long tiempoCrono;
     private int id_rutina;
@@ -52,6 +53,10 @@ public class EjercicioActual extends AppCompatActivity {
 
     public EjercicioActual(){
 
+    }
+
+    public EjercicioActual(int numEjercicios){
+        numTotalEjercicios = numEjercicios;
     }
 
     @Override
@@ -148,9 +153,6 @@ public class EjercicioActual extends AppCompatActivity {
                     intent.putExtra(Inicio.EXTRA_EJERCICIO_ID, id_ejercicio - 2 );
                     startActivityForResult(intent, REQUEST_SHOW_EJERCICIOS);
                 }
-
-
-
             }
         });
 
@@ -165,12 +167,12 @@ public class EjercicioActual extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    EjercicioActual ejercicioActual = new EjercicioActual();
+                if(id_ejercicio + 1 <= numTotalEjercicios) {
+                    EjercicioActual ejercicioActual = new EjercicioActual(numTotalEjercicios);
                     Intent intent = new Intent(getApplicationContext(), ejercicioActual.getClass());
-                    intent.putExtra(Inicio.EXTRA_EJERCICIO_ID, id_ejercicio );
+                    intent.putExtra(Inicio.EXTRA_EJERCICIO_ID, id_ejercicio);
                     startActivityForResult(intent, REQUEST_SHOW_EJERCICIOS);
-
-
+                }
             }
         });
 
