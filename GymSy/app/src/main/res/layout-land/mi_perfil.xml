@@ -84,10 +84,11 @@
 
         </LinearLayout>
 
-        <include
-            layout="@layout/content_mi_perfil"
+        <sun.bob.mcalendarview.MCalendarView
+            android:id="@+id/calendar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            tools:context=".MainActivity" />
 
     </LinearLayout>
 

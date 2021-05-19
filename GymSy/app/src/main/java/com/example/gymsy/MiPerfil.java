@@ -8,12 +8,15 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import sun.bob.mcalendarview.MCalendarView;
+
 public class MiPerfil extends AppCompatActivity {
     private ImageView imagenPerfil;
     private TextView nombreUsuario;
     private TextView altura;
     private TextView peso;
     private TextView etapa;
+    private MCalendarView calendario;
 
     public MiPerfil(){
 
@@ -29,6 +32,7 @@ public class MiPerfil extends AppCompatActivity {
         altura = findViewById(R.id._altString);
         peso = findViewById(R.id._pes);
         etapa = findViewById(R.id._frecActual);
+        calendario = findViewById(R.id.calendar);
 
         DiaSemanaFragment fragment = (DiaSemanaFragment)
                 getSupportFragmentManager().findFragmentById( R.id.mi_perfil_container);
@@ -61,6 +65,7 @@ public class MiPerfil extends AppCompatActivity {
             peso.setText("Peso:");
             etapa.setText("Etapa: ");
         }
-    }
 
+        calendario.markDate(2020,05,19);
+    }
 }
