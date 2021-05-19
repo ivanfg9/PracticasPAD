@@ -101,7 +101,7 @@
                     android:textColor="#FF9800" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/_etapaAct"
                     android:layout_width="match_parent"
                     android:layout_height="68dp"
                     android:text="TextView" />
@@ -112,7 +112,7 @@
                 android:id="@+id/calendar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:context=".MainActivity" />
+                tools:context=".MiPerfil" />
 
            <!-- <CalendarView
                 android:id="@+id/calendarView"
