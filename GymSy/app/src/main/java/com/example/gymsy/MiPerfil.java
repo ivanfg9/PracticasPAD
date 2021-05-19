@@ -34,17 +34,9 @@ public class MiPerfil extends AppCompatActivity {
         etapa = findViewById(R.id._frecActual);
         calendario = findViewById(R.id.calendar);
 
-        DiaSemanaFragment fragment = (DiaSemanaFragment)
-                getSupportFragmentManager().findFragmentById( R.id.mi_perfil_container);
 
 
-        if(fragment==null){
-            fragment = new DiaSemanaFragment();
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.mi_perfil_container, fragment)
-                    .commit();
-        }
+
 
         SharedPreferences sharedPreferences = this.getSharedPreferences("usuarios", Context.MODE_PRIVATE);
 
