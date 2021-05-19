@@ -1,9 +1,7 @@
 package com.example.gymsy;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SyncStatusObserver;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,17 +13,7 @@ import android.widget.Toast;
 
 import com.example.gymsy.connection.PostData;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 
 public class NuevoUsuario extends Activity {
@@ -82,7 +70,7 @@ public class NuevoUsuario extends Activity {
         altura = findViewById(R.id._altura);
 
         weight = findViewById(R.id._weight);
-        peso = findViewById(R.id._peso);
+        peso = findViewById(R.id._pesoString);
 
         stage = findViewById(R.id._stageText);
         etapa = findViewById(R.id._etapa);

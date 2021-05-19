@@ -1,6 +1,5 @@
 package com.example.gymsy;
 
-import android.content.ContentProviderClient;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,7 +26,7 @@ public class MiPerfil extends AppCompatActivity {
 
         imagenPerfil = findViewById(R.id.imageView);
         nombreUsuario = findViewById(R.id._nombreUser);
-        altura = findViewById(R.id._alt);
+        altura = findViewById(R.id._altString);
         peso = findViewById(R.id._pes);
         etapa = findViewById(R.id._frecActual);
 

@@ -93,7 +93,7 @@
                     android:textColor="#FF9800" />
 
                 <EditText
-                    android:id="@+id/_peso"
+                    android:id="@+id/_pesoString"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="8dp"

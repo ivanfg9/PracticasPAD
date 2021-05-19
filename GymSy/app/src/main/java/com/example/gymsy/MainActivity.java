@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             usuarioView = findViewById(R.id._heigh);
             usuario = findViewById(R.id._altura);
             contrasenaView = findViewById(R.id._weight);
-            contrasena = findViewById(R.id._peso);
+            contrasena = findViewById(R.id._pesoString);
             inicioSesion = findViewById(R.id._inicioSesion);
             registrarse = findViewById(R.id._registrarse);
         }
