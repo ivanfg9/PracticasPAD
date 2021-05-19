@@ -32,18 +32,14 @@ public class EjercicioActual extends AppCompatActivity {
 
     private Button start;
     private Button terminar;
-    //private Button siguiente;
     private Button before;
-    private Button pause;
     private Button next;
     private Chronometer cronometro;
 
     private int id_ejercicio;
     private int totalRepeticiones = 0;
     private int numTotalEjercicios;
-    private String musculo = "";
     private long tiempoCrono;
-    private int id_rutina;
     private boolean estadoPlay;
     private boolean estadoComenzar;
     private static final int REQUEST_SHOW_EJERCICIOS = 2;
@@ -74,11 +70,8 @@ public class EjercicioActual extends AppCompatActivity {
 
         Bundle datosIntent = getIntent().getExtras();
 
-
         id_ejercicio = datosIntent.getInt("extra_ejercicio_id") + 1;
 
-
-        //Drawable drawable = ResourcesCompat.getDrawable(res,R.drawable.gimsy,null);
         int id = getResources().getIdentifier("ej"+id_ejercicio, "drawable", getPackageName());
         imagen.setImageDrawable( getResources().getDrawable(id));
 
@@ -120,8 +113,6 @@ public class EjercicioActual extends AppCompatActivity {
             }
         }
 
-        //descripcion.setText(musculo);
-
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,6 +129,7 @@ public class EjercicioActual extends AppCompatActivity {
                 cronometro.stop();
                 Inicio inicio = new Inicio();
                 Intent intent = new Intent(getApplicationContext(),inicio.getClass());
+                startActivity(intent);
             }
         });
 
@@ -154,13 +146,6 @@ public class EjercicioActual extends AppCompatActivity {
             }
         });
 
-        /*pause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                estadoPlay=false;
-            }
-        });*/
-
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,13 +158,6 @@ public class EjercicioActual extends AppCompatActivity {
                 }
             }
         });
-
-        /*siguiente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Acceso a base de datos
-            }
-        });*/
     }
 
     @Override
@@ -196,8 +174,3 @@ public class EjercicioActual extends AppCompatActivity {
     }
 
 }
-
-/*
-
-
- */

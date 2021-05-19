@@ -29,14 +29,12 @@ public class EjerciciosFragment extends Fragment {
     private static final int REQUEST_SHOW_EJERCICIOS = 2;
 
     private ListView ejerciciosListView;
-    private SimpleCursorAdapter ejerciciosCursorAdapter;
-    private int numEjercicios;
     public static int numEjerciciosTotales=0;
     private String data = "";
     private String url = "http://35.180.41.33/ejercicios/all/";
 
     public EjerciciosFragment() {
-        numEjercicios = 0;
+
     }
 
     @Override
@@ -62,8 +60,6 @@ public class EjerciciosFragment extends Fragment {
                 list[i] = arr.getJSONObject(i).getString("nombre");
             }
 
-            numEjercicios = arr.length();
-
         }catch(JSONException jsonEx){
             Log.e("test", "Failed to convert to JSON");
             jsonEx.printStackTrace();
@@ -71,16 +67,7 @@ public class EjerciciosFragment extends Fragment {
 
 
         ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), R.layout.content_ejercicios, R.id.test25,list);
-        /*
-        ejerciciosCursorAdapter = new SimpleCursorAdapter(
-                getActivity(),
-                android.R.layout.two_line_list_item,
-                bd.getEjercicios(),
-                new String[]{TablasBD.EjercicioEntry.IMAGEN_URI},
-                new int[]{R.id.iv_avatar},
-                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
-        );
-*/
+
         ejerciciosListView.setAdapter(adapter);
 
         ejerciciosListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -108,10 +95,5 @@ public class EjerciciosFragment extends Fragment {
                     break;
             }
         }
-    }
-
-    private void loadEjercicios(){
-        EjerciciosLoadTask ej = new EjerciciosLoadTask(ejerciciosCursorAdapter);
-        ej.execute();
     }
 }
