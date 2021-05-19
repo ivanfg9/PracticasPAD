@@ -164,8 +164,8 @@ public class EjercicioActual extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(id_ejercicio < EjerciciosFragment.numEjerciciosTotales) {
+                numTotalEjercicios=EjerciciosFragment.numEjerciciosTotales;
+                if(id_ejercicio < numTotalEjercicios) {
                     EjercicioActual ejercicioActual = new EjercicioActual();
                     Intent intent = new Intent(getApplicationContext(), ejercicioActual.getClass());
                     intent.putExtra(Inicio.EXTRA_EJERCICIO_ID, id_ejercicio);
