@@ -62,7 +62,6 @@ public class EjercicioActual extends AppCompatActivity {
         imagen  = findViewById(R.id.imageEjercicio);
         before = findViewById(R.id._before);
         next = findViewById(R.id._after);
-        //siguiente = findViewById(R.id._next);
         start = findViewById(R.id._start);
         terminar = findViewById(R.id._finish);
         cronometro = findViewById(R.id._cronometro);
@@ -74,10 +73,11 @@ public class EjercicioActual extends AppCompatActivity {
 
 
         id_ejercicio = datosIntent.getInt("extra_ejercicio_id") + 1;
-        
-        Resources res = getResources();
-        Drawable drawable = ResourcesCompat.getDrawable(res,R.drawable.gimsy,null);
-        imagen.setImageDrawable(drawable);
+
+
+        //Drawable drawable = ResourcesCompat.getDrawable(res,R.drawable.gimsy,null);
+        int id = getResources().getIdentifier("ej"+id_ejercicio, "drawable", getPackageName());
+        imagen.setImageDrawable( getResources().getDrawable(id));
 
         data = "id=" + id_ejercicio;
         PostData post = new PostData(data, url); // Ejemplo de lo que devuelve: { "msg":"Success", "data":[{"id":"1", "nombre":"Biceps con Mancuerna", "descripcion":"Aqui una explicacion de mierda sobre como hacer este ejercicio.", "repeticiones":"12", "secs":"40" }] }
@@ -100,16 +100,6 @@ public class EjercicioActual extends AppCompatActivity {
             jsonEx.printStackTrace();
         }
 
-        /*Cursor c = bd.getRutinaPorIdEjercicio(datosIntent.toString());
-        repeticiones.setText(c.getColumnIndex(TablasBD.RutinaEntry.REPETICIONES));
-
-        c = bd.getEjercicioPorId(datosIntent.toString());
-        descripcion.setText(c.getColumnIndex(TablasBD.EjercicioEntry.MUSCULO));
-        Glide.with(this)
-                .load(Uri.parse("file:/app/src/main/res/drawable/" +
-                        c.getString(c.getColumnIndex(TablasBD.EjercicioEntry.IMAGEN_URI))))
-                .centerCrop()
-                .into(imagen); */
 
         if(savedInstanceState != null){
             estadoComenzar = savedInstanceState.getBoolean("pulsado_comenzar");
@@ -151,11 +141,14 @@ public class EjercicioActual extends AppCompatActivity {
         before.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(id_ejercicio - 1 > 0){
                     Log.e("test", "a");
                     EjercicioActual ejercicioActual = new EjercicioActual();
                     Intent intent = new Intent(getApplicationContext(), ejercicioActual.getClass());
                     intent.putExtra(Inicio.EXTRA_EJERCICIO_ID, id_ejercicio - 2 );
                     startActivityForResult(intent, REQUEST_SHOW_EJERCICIOS);
+                }
+
 
 
             }

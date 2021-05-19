@@ -24,6 +24,8 @@ public class Inicio extends AppCompatActivity {
     public Inicio(){
     }
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +79,9 @@ public class Inicio extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
 
+    }
 
 }
