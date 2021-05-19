@@ -21,6 +21,7 @@
         <activity android:name=".Inicio"/>
         <activity android:name=".AcercaDe"/>
         <activity android:name=".EjercicioActual"/>
+        <activity android:name=".MiPerfil"/>
 
     </application>
 

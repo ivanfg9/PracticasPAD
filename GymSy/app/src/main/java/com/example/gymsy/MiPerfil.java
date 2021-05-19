@@ -30,11 +30,9 @@ public class MiPerfil extends AppCompatActivity {
         imagenPerfil = findViewById(R.id.imageView);
         nombreUsuario = findViewById(R.id._nombreUser);
         altura = findViewById(R.id._altString);
-        peso = findViewById(R.id._pes);
+        peso = findViewById(R.id._peso);
         etapa = findViewById(R.id._frecActual);
         calendario = findViewById(R.id.calendar);
-
-
 
 
 
