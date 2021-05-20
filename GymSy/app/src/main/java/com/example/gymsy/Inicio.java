@@ -88,7 +88,7 @@ public class Inicio extends AppCompatActivity {
                 editor.remove("token");
 
                 try {
-                    if(!miperfil.equals(null)) {
+                    if(miperfil != null) {
                         MCalendarView calendarView = miperfil.getCalendario();
                         String fechasJSON = preferences.getString("fechasJSON", "Ninguna");
                         JSONArray jsonArrayDates = new JSONArray(fechasJSON);

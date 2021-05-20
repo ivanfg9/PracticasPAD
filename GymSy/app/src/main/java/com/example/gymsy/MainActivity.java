@@ -77,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
     *  son correctos y en ese caso te redireccionara a la vista Inicio
     */
     public void iniciar(View view){
+
+        usuario = findViewById(R.id._altura);
+        contrasena = findViewById(R.id._pesoString);
         String _usuario = usuario.getText().toString();
         String _contrasena = contrasena.getText().toString();
 
