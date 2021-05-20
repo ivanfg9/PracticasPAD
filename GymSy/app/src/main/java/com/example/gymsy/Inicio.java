@@ -8,8 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 public class Inicio extends AppCompatActivity {
 
@@ -50,7 +49,8 @@ public class Inicio extends AppCompatActivity {
         rendimiento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MiPerfil.class);
+                MiPerfil miperfil = new MiPerfil();
+                Intent intent = new Intent(getApplicationContext(), miperfil.getClass());
                 startActivity(intent);
             }
         });
@@ -58,7 +58,8 @@ public class Inicio extends AppCompatActivity {
         acercaDe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),AcercaDe.class);
+                AcercaDe acercade = new AcercaDe();
+                Intent intent = new Intent(getApplicationContext(),acercade.getClass());
                 startActivity(intent);
             }
         });

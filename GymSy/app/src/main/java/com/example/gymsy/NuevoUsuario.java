@@ -158,10 +158,8 @@ public class NuevoUsuario extends Activity {
             String data = "username="+_nombreUsuario+"&password="+_contrasenia+"&altura="+_altura+"&peso="+_peso+"&etapa="+_etapa+"&lesion="+_lesionSiNo+"&zonaLesion="+_zonaLesion;
             String url = "http://35.180.41.33/auth/register/";
             PostData foo = new PostData(data, url);
-            Thread thread = new Thread(foo);
-            thread.start();
-            thread.join();
-            String jsonResult = foo.getValue();
+            String jsonResult = foo.postData();
+
             Log.e("test", jsonResult );
             return jsonResult;
         }
