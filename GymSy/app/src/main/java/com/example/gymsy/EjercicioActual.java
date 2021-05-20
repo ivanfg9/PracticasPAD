@@ -1,6 +1,8 @@
 package com.example.gymsy;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
@@ -9,11 +11,17 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.gymsy.connection.PostData;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class EjercicioActual extends AppCompatActivity {
@@ -38,7 +46,7 @@ public class EjercicioActual extends AppCompatActivity {
     private static final int REQUEST_SHOW_EJERCICIOS = 2;
     private String data = "";
     private String url = "http://35.180.41.33/ejercicios/id/";
-    
+
     public EjercicioActual(){
 
     }
@@ -84,6 +92,8 @@ public class EjercicioActual extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                hoySeHaEntrenado();
                 estadoComenzar = true;
                 cronometro.setBase(SystemClock.elapsedRealtime());
                 cronometro.start();
@@ -167,6 +177,39 @@ public class EjercicioActual extends AppCompatActivity {
             jsonEx.printStackTrace();
         }
 
+    }
+    public void hoySeHaEntrenado(){
+
+
+        SharedPreferences sharedPreferences = this.getSharedPreferences("usuarios", Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString("username","No existe un usuario con este username");
+        if(!username.equalsIgnoreCase("No existe un usuario con este username")){
+            String fechasJSON = sharedPreferences.getString("fechasJSON","Ninguna");
+            String token = sharedPreferences.getString("token","Ninguna");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date();
+            if(!fechasJSON.contains(formatter.format(date))){
+                String data = "token="+token;
+                String url = "http://35.180.41.33/identity/user/fechas/nueva/";
+                PostData foo = new PostData(data, url);
+                foo.postData();
+                try{
+                    Log.e("test",fechasJSON);
+                    JSONObject newDate = new JSONObject();
+                    newDate.put("date", formatter.format(date));
+                    JSONArray jsonArrayDates = new JSONArray(fechasJSON);
+                    jsonArrayDates.put(newDate);
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("fechasJSON", jsonArrayDates.toString());
+
+
+                }catch(Exception ex){
+
+                }
+            }
+
+        }
     }
 
 }

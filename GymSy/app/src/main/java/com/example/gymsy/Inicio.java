@@ -74,6 +74,7 @@ public class Inicio extends AppCompatActivity {
                 editor.remove("peso");
                 editor.remove("etapa");
                 editor.remove("token");
+                editor.remove("fechasJSON");
                 editor.commit();
 
                 finish();
