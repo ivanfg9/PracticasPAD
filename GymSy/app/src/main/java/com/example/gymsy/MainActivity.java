@@ -45,6 +45,20 @@ public class MainActivity extends AppCompatActivity {
             contrasena = findViewById(R.id._pesoString);
             inicioSesion = findViewById(R.id._inicioSesion);
             registrarse = findViewById(R.id._registrarse);
+
+            inicioSesion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    iniciar(v);
+                }
+            });
+
+            registrarse.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    registrar(v);
+                }
+            });
         }
         else{
             Inicio inicio = new Inicio();
