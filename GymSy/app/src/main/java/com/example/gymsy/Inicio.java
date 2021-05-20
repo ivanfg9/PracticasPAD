@@ -88,17 +88,19 @@ public class Inicio extends AppCompatActivity {
                 editor.remove("token");
 
                 try {
-                    MCalendarView calendarView = miperfil.getCalendario();
-                    String fechasJSON = preferences.getString("fechasJSON","Ninguna");
-                    JSONArray jsonArrayDates = new JSONArray(fechasJSON);
-                    Log.e("test", String.valueOf(jsonArrayDates.length()));
-                    int anio,mes,dia;
-                    for(int i = 0; i < jsonArrayDates.length(); i++){
-                        String[] splitDate = new JSONObject(jsonArrayDates.get(i).toString()).getString("date").split("-");
-                        anio = Integer.valueOf(splitDate[0]);
-                        mes = Integer.valueOf(splitDate[1]);
-                        dia = Integer.valueOf(splitDate[2]);
-                        calendarView.unMarkDate(anio,mes,dia);
+                    if(!miperfil.equals(null)) {
+                        MCalendarView calendarView = miperfil.getCalendario();
+                        String fechasJSON = preferences.getString("fechasJSON", "Ninguna");
+                        JSONArray jsonArrayDates = new JSONArray(fechasJSON);
+                        Log.e("test", String.valueOf(jsonArrayDates.length()));
+                        int anio, mes, dia;
+                        for (int i = 0; i < jsonArrayDates.length(); i++) {
+                            String[] splitDate = new JSONObject(jsonArrayDates.get(i).toString()).getString("date").split("-");
+                            anio = Integer.valueOf(splitDate[0]);
+                            mes = Integer.valueOf(splitDate[1]);
+                            dia = Integer.valueOf(splitDate[2]);
+                            calendarView.unMarkDate(anio, mes, dia);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -107,10 +109,7 @@ public class Inicio extends AppCompatActivity {
                 editor.remove("fechasJSON");
                 editor.commit();
 
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                finish();
             }
         });
     }
