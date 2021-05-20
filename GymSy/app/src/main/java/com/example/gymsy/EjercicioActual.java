@@ -178,6 +178,7 @@ public class EjercicioActual extends AppCompatActivity {
             JSONObject defDataJSON = arr.getJSONObject(0);
             repeticiones.setText(defDataJSON.getString("repeticiones") + " repeticiones");
             descripcion.setText(defDataJSON.getString("descripcion"));
+            _musculo.setText(defDataJSON.getString("nombre"));
 
         }catch(JSONException jsonEx){
             Log.e("test", "Failed to convert to JSON");
