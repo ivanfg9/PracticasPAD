@@ -40,6 +40,7 @@ public class EjerciciosFragment extends Fragment {
 
         ejerciciosListView = (ListView) root.findViewById(R.id.ejercicios_list);
 
+        /* Acceso a la base de datos de la API para obtener la lista de ejercicios */
         PostData post = new PostData(data, url); // Ejemplo del JSON que devuelve esto: { "msg":"Success", "data":[{"id":"1", "nombre":"Biceps con Mancuerna", "descripcion":"Aqui una explicacion de mierda sobre como hacer este ejercicio.", "repeticiones":"12", "secs":"40" },{"id":"2", "nombre":"Push ups", "descripcion":"Lo de toda la life", "repeticiones":"30", "secs":"120" }] }
         String allEjerciciosJSON = post.postData();
         Log.e("test", allEjerciciosJSON);
@@ -60,7 +61,7 @@ public class EjerciciosFragment extends Fragment {
             jsonEx.printStackTrace();
         }
 
-
+        /* Añade a la listaView la lista de ejercicios obtenidos de la base de datos */
         ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), R.layout.content_ejercicios, R.id.test25,list);
 
         ejerciciosListView.setAdapter(adapter);
@@ -75,6 +76,7 @@ public class EjerciciosFragment extends Fragment {
         return root;
     }
 
+    /* Muestra el ejercicio con id = ejercicioId, a treves de un Intent*/
     private void showEjercicioScreen(int ejercicioId) {
         EjercicioActual ejercicioActual = new EjercicioActual();
         Intent intent = new Intent(getActivity(), ejercicioActual.getClass());

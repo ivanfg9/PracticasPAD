@@ -51,12 +51,12 @@ public class EjercicioActual extends AppCompatActivity {
 
     }
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ejercicio_actual);
+
+        // Obtienes los datos de la clase que fue invocado
         Bundle datosIntent = getIntent().getExtras();
 
         id_ejercicio = datosIntent.getInt("extra_ejercicio_id") + 1;
@@ -73,6 +73,9 @@ public class EjercicioActual extends AppCompatActivity {
 
         constructView();
 
+        /* Guarda el estado en el que se encuentren los elementos si cambia la orientacion del
+        *  movil
+        */
         if(savedInstanceState != null){
             estadoComenzar = savedInstanceState.getBoolean("pulsado_comenzar");
             estadoPlay = savedInstanceState.getBoolean("pulsado_play");
@@ -89,6 +92,7 @@ public class EjercicioActual extends AppCompatActivity {
             }
         }
 
+        /* Se pone en marcha el cronometro y se registra que el usuario ha hecho ejercicio ese dia */
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +104,7 @@ public class EjercicioActual extends AppCompatActivity {
             }
         });
 
+        /* Se para el cronometro y te redirecciona a la vista de Inicio */
         terminar.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -111,6 +116,7 @@ public class EjercicioActual extends AppCompatActivity {
             }
         });
 
+        /* Te pone el ejercicio anterior, siempre y cuando haya ejercicio anterior */
         before.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,6 +127,7 @@ public class EjercicioActual extends AppCompatActivity {
             }
         });
 
+        /* Te pone el ejercicio siguiente, siempre y cuando haya siguiente ejercicio */
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,6 +140,7 @@ public class EjercicioActual extends AppCompatActivity {
         });
     }
 
+    /* Guarda el estado en ese momento de los elementos */
     @Override
     protected void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
@@ -146,8 +154,10 @@ public class EjercicioActual extends AppCompatActivity {
         outState.putBoolean("pulsado_play",estPlay);
     }
 
+    /* Actualiza la vista con los parametros que hay en la base de datos del ejercicio con
+    *  id = id_ejercicio
+    */
     public void constructView(){
-
 
         int id = getResources().getIdentifier("ej"+id_ejercicio, "drawable", getPackageName());
         Log.e("test", "Resource id: "+id);
@@ -162,7 +172,6 @@ public class EjercicioActual extends AppCompatActivity {
         Log.e("test",  ejercicioJSON);
 
         try {
-
             JSONObject json = new JSONObject( ejercicioJSON);
             JSONArray arr = json.getJSONArray("data");
             numTotalEjercicios=arr.length();
@@ -171,15 +180,15 @@ public class EjercicioActual extends AppCompatActivity {
             repeticiones.setText(defDataJSON.getString("repeticiones") + " repeticiones");
             descripcion.setText(defDataJSON.getString("descripcion"));
 
-
         }catch(JSONException jsonEx){
             Log.e("test", "Failed to convert to JSON");
             jsonEx.printStackTrace();
         }
 
     }
-    public void hoySeHaEntrenado(){
 
+    /* Registra en la base de datos, API y local, la fecha en la que ha realizado el ejercicio */
+    public void hoySeHaEntrenado(){
 
         SharedPreferences sharedPreferences = this.getSharedPreferences("usuarios", Context.MODE_PRIVATE);
         String username = sharedPreferences.getString("username","No existe un usuario con este username");
@@ -202,14 +211,10 @@ public class EjercicioActual extends AppCompatActivity {
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("fechasJSON", jsonArrayDates.toString());
-
-
                 }catch(Exception ex){
 
                 }
             }
-
         }
     }
-
 }

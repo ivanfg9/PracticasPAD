@@ -34,6 +34,7 @@ public class Inicio extends AppCompatActivity {
         acercaDe = findViewById(R.id._acercaDe);
         logout = findViewById(R.id._logout);
 
+        /* Añade a la vista la lista de ejercicios contenido en EjerciciosFragment */
         EjerciciosFragment fragment = (EjerciciosFragment)
                 getSupportFragmentManager().findFragmentById( R.id.ejercicio_container);
 
@@ -64,6 +65,9 @@ public class Inicio extends AppCompatActivity {
             }
         });
 
+        /* Elimina de la base de datos local los datos del usuario que se encontraba logueado
+        *  en ese momento
+        */
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +85,8 @@ public class Inicio extends AppCompatActivity {
             }
         });
     }
+
+    /* Bloquea el boton de atras del movil, para que no vuelva a la pantalla de MainActivity */
     @Override
     public void onBackPressed() {
 

@@ -40,7 +40,6 @@ public class NuevoUsuario extends Activity {
     private TextView injuredArea;
     private EditText zonaLesion;
 
-
     private String _nombreUsuario;
     private String _altura;
     private String _peso;
@@ -96,6 +95,10 @@ public class NuevoUsuario extends Activity {
         zonaLesion = findViewById(R.id._zonaLesion);
     }
 
+    /* Obtiene los datos que se han introducido en el cuestionario y en el caso de que no haya un
+    *  usuario con mismo nombre de usuario, lo registra en la base de datos de la API, y te devuelve
+    *  a la pantalla de MainActivity
+    */
     public void registrarUsuario(View view) throws NoSuchAlgorithmException, UnsupportedEncodingException {
          _contrasenia = contrasena.getText().toString();
          _nombreUsuario = nombreUsuario.getText().toString();
@@ -150,11 +153,9 @@ public class NuevoUsuario extends Activity {
         }
     }
 
-
+    /* Registra al usuario en la base de datos de la API */
     public String postData() {
-
         try {
-
             String data = "username="+_nombreUsuario+"&password="+_contrasenia+"&altura="+_altura+"&peso="+_peso+"&etapa="+_etapa+"&lesion="+_lesionSiNo+"&zonaLesion="+_zonaLesion;
             String url = "http://35.180.41.33/auth/register/";
             PostData foo = new PostData(data, url);
@@ -169,5 +170,4 @@ public class NuevoUsuario extends Activity {
             return fail;
         }
     }
-
 }

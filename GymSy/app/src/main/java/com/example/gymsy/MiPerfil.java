@@ -37,6 +37,10 @@ public class MiPerfil extends AppCompatActivity {
         etapa = findViewById(R.id._frecActual);
         calendario = findViewById(R.id.calendar);
 
+        /* Carga los datos que haya en el SharedPreferences para mostrar la información del
+        *  usuario logueado. En el caso de que no hubiera un usuario mostraria todos los campos
+        *  vacios y el calendario sin marcas
+        */
         SharedPreferences sharedPreferences = this.getSharedPreferences("usuarios", Context.MODE_PRIVATE);
 
         String username = sharedPreferences.getString("username","No existe un usuario con este username");
@@ -68,10 +72,6 @@ public class MiPerfil extends AppCompatActivity {
             }catch(Exception ex){
 
             }
-
-
-
-
         }
         else{
             nombreUsuario.setText("Nombre usuario: ");
@@ -79,9 +79,5 @@ public class MiPerfil extends AppCompatActivity {
             peso.setText("Peso:");
             etapa.setText("Etapa: ");
         }
-
-
-
-
     }
 }
