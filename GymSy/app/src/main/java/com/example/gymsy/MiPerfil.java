@@ -80,4 +80,8 @@ public class MiPerfil extends AppCompatActivity {
             etapa.setText("Etapa: ");
         }
     }
+
+    public MCalendarView getCalendario() {
+        return calendario;
+    }
 }
