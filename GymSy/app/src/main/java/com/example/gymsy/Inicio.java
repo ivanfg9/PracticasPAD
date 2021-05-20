@@ -4,17 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import sun.bob.mcalendarview.MCalendarView;
 
 
 public class Inicio extends AppCompatActivity {
@@ -87,28 +80,8 @@ public class Inicio extends AppCompatActivity {
                 editor.remove("etapa");
                 editor.remove("token");
 
-                try {
-                    if(miperfil != null) {
-                        MCalendarView calendarView = miperfil.getCalendario();
-                        String fechasJSON = preferences.getString("fechasJSON", "Ninguna");
-                        JSONArray jsonArrayDates = new JSONArray(fechasJSON);
-                        Log.e("test", String.valueOf(jsonArrayDates.length()));
-                        int anio, mes, dia;
-                        for (int i = 0; i < jsonArrayDates.length(); i++) {
-                            String[] splitDate = new JSONObject(jsonArrayDates.get(i).toString()).getString("date").split("-");
-                            anio = Integer.valueOf(splitDate[0]);
-                            mes = Integer.valueOf(splitDate[1]);
-                            dia = Integer.valueOf(splitDate[2]);
-                            calendarView.unMarkDate(anio, mes, dia);
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
                 editor.remove("fechasJSON");
                 editor.commit();
-
                 finish();
             }
         });

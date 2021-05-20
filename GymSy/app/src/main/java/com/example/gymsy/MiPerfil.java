@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import sun.bob.mcalendarview.MCalendarView;
@@ -83,5 +84,31 @@ public class MiPerfil extends AppCompatActivity {
 
     public MCalendarView getCalendario() {
         return calendario;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        SharedPreferences preferences = getSharedPreferences("usuarios", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        try {
+
+
+                String fechasJSON = preferences.getString("fechasJSON", "Ninguna");
+                JSONArray jsonArrayDates = new JSONArray(fechasJSON);
+                Log.e("test", String.valueOf(jsonArrayDates.length()));
+                int anio, mes, dia;
+                for (int i = 0; i < jsonArrayDates.length(); i++) {
+                    String[] splitDate = new JSONObject(jsonArrayDates.get(i).toString()).getString("date").split("-");
+                    anio = Integer.valueOf(splitDate[0]);
+                    mes = Integer.valueOf(splitDate[1]);
+                    dia = Integer.valueOf(splitDate[2]);
+                    calendario.unMarkDate(anio, mes, dia);
+                }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 }

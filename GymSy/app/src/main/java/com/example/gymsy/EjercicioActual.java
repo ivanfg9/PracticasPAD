@@ -220,4 +220,8 @@ public class EjercicioActual extends AppCompatActivity {
             }
         }
     }
+
+    public void onBackPressed() {
+        finish();
+    }
 }
