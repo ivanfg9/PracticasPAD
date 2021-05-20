@@ -96,7 +96,6 @@ public class EjercicioActual extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 hoySeHaEntrenado();
                 estadoComenzar = true;
                 cronometro.setBase(SystemClock.elapsedRealtime());
@@ -196,6 +195,7 @@ public class EjercicioActual extends AppCompatActivity {
             String fechasJSON = sharedPreferences.getString("fechasJSON","Ninguna");
             String token = sharedPreferences.getString("token","Ninguna");
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Log.e("test",fechasJSON);
             Date date = new Date();
             if(!fechasJSON.contains(formatter.format(date))){
                 String data = "token="+token;
@@ -211,6 +211,8 @@ public class EjercicioActual extends AppCompatActivity {
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("fechasJSON", jsonArrayDates.toString());
+                    editor.commit();
+                    Log.e("test",jsonArrayDates.toString());
                 }catch(Exception ex){
 
                 }
