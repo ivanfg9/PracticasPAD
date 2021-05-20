@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import sun.bob.mcalendarview.MCalendarView;
@@ -51,14 +52,26 @@ public class MiPerfil extends AppCompatActivity {
             peso.setText("Peso:" + weight + "kg");
             etapa.setText("Etapa: " + stage);
             try{
+                Log.e("test",fechasJSON);
+                JSONArray jsonArrayDates = new JSONArray(fechasJSON);
+
+                Log.e("test", String.valueOf(jsonArrayDates.length() ) );
+                int anio,mes,dia;
+                for(int i = 0; i < jsonArrayDates.length(); i++){
+                    String[] splitDate = new JSONObject(jsonArrayDates.get(i).toString()).getString("date").split("-");
+                    anio = Integer.valueOf(splitDate[0]);
+                    mes = Integer.valueOf(splitDate[1]);
+                    dia = Integer.valueOf(splitDate[2]);
+                    calendario.markDate(anio,mes,dia);
+                }
 
             }catch(Exception ex){
-                JSONObject json2 = new JSONObject(fechasJSON);
+
             }
 
 
 
-            calendario.markDate(2021,05,18);
+
         }
         else{
             nombreUsuario.setText("Nombre usuario: ");

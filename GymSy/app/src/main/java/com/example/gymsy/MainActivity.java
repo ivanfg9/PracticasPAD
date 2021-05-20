@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gymsy.connection.PostData;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
@@ -112,6 +113,18 @@ public class MainActivity extends AppCompatActivity {
                     String jsonAnswer3 = loginConnection3.postData();
 
                     Log.e("test",jsonAnswer3);
+                    String strDatesArray = "";
+                    try{
+                        JSONObject jsonwithDates = new JSONObject(jsonAnswer3);
+                        JSONArray datesArray = jsonwithDates.getJSONArray("data");
+                        strDatesArray = datesArray.toString();
+                        Log.e("test", strDatesArray);
+
+
+
+                    }catch(Exception ex){
+
+                    }
 
                     SharedPreferences preferences = this.getSharedPreferences("usuarios",Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
@@ -120,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString("peso",json2.getString("peso"));
                     editor.putString("etapa",json2.getString("etapa"));
                     editor.putString("token",token);
-                    editor.putString("fechasJSON",jsonAnswer3);
+                    editor.putString("fechasJSON",strDatesArray);
                     editor.commit();
 
                     Inicio inicio = new Inicio();
