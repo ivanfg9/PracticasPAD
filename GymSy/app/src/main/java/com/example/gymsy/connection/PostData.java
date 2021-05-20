@@ -42,7 +42,6 @@ public class PostData implements Runnable {
         return this.value;
     }
 
-
     private static String convertStreamToString(InputStream is) {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
@@ -65,7 +64,6 @@ public class PostData implements Runnable {
         return sb.toString();
     }
 
-
     public String postData() {
 
         try {
@@ -82,6 +80,4 @@ public class PostData implements Runnable {
             return fail;
         }
     }
-
-
 }

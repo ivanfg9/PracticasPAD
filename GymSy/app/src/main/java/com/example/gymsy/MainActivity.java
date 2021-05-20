@@ -34,9 +34,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Base de datos local donde almacenar la informacion del usuario logueado
         SharedPreferences preferences = this.getSharedPreferences("usuarios",Context.MODE_PRIVATE);
         String token = preferences.getString("token","No existe token");
         Log.e("test", token);
+
+        /* Si no se encuentra un token de usuario, muestra la vista de inicio sesion y registro
+        *  Si se encuentra, llevará al usuario directamente a la vista de Inicio
+        */
         if(token.equalsIgnoreCase("No existe token")){
             foto = findViewById(R.id._foto);
             usuarioView = findViewById(R.id._heigh);
@@ -68,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /* Se comprueba que los campos esten rellenos y en el caso que lo esten, comprobara que los datos
+    *  son correctos y en ese caso te redireccionara a la vista Inicio
+    */
     public void iniciar(View view){
         String _usuario = usuario.getText().toString();
         String _contrasena = contrasena.getText().toString();
@@ -162,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /* Redirecciona a la vista de NuevoUsuario */
     public void registrar(View view){
         NuevoUsuario nuevoUsuario = new NuevoUsuario();
         Intent intent = new Intent(this,nuevoUsuario.getClass());
